@@ -29,6 +29,8 @@ public class Triangle {
 	
 	public Vector getNormal(Orientation side){
 		
+		
+		
 		return new Vector();
 	}
 
