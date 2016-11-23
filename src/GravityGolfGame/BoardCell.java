@@ -2,15 +2,26 @@ package GravityGolfGame;
 
 public class BoardCell {
 	
+	char boardCellInitial;
 	private boolean triangle;
 	private boolean ball;
 	private boolean win;
+	private int x;
+	private int y;
 	
 	public BoardCell(){
 		
 	}
 	
 	public BoardCell(int x, int y, boolean hasTriangle, boolean hasBall){
+		
+	}
+
+	public char getInitial() {
+		return boardCellInitial;
+	}
+	
+	public void setInitial() {
 		
 	}
 	
@@ -34,7 +45,6 @@ public class BoardCell {
 		this.ball = set;
 	}
 	
-	
 	//This returns the BoardCell to have the winning Condition. 
 	public boolean containsWin() {
 		return this.win;
@@ -45,17 +55,33 @@ public class BoardCell {
 		this.win = set;
 	}
 	
-	public void changeX(int dx){
-		
+	
+	//This is the simple set to when it the ball is traveling right.
+	public void changeXRight(int dx){
+		this.x += dx;
 	}
 	
+	//This is the simple set to when it the ball is traveling left.
+	public void changeXLeft(int dx){
+		this.x -= dx;
+	}
 	
-	public void changeY(int dx){
-		
+	//This is the simple set to when it the ball is traveling Up.
+	public void changeYUp(int dy){
+		this.y += dy;
+	}
+	
+	//This is the simple set to when it the ball is traveling down.
+	public void changeYDown(int dy){
+		this.y -= dy;
 	}
 	
 	public int getX(){
-		return x;
+		return this.x;
+	}
+	
+	public int getYUp(){
+		return this.y;
 	}
 	
 }

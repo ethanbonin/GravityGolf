@@ -9,11 +9,9 @@ import GravityGolfGame.Ball;
 import GravityGolfGame.Board;
 
 public class GameConditionTest {
-
-	
 	
 		@BeforeClass
-		public void setup(){
+		public static void setup(){
 			Board board = Board.getInstance();
 			Ball testBall = new Ball();
 		}

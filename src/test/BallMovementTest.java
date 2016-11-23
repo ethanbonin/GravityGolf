@@ -21,6 +21,14 @@ public class BallMovementTest {
 		
 		//This tests to see if a boardcell can contain a Triangle
 		assertEquals(true, cell.containsTriangle());
+		
+		
+		//Still needs to set up more, but tests to see if It changes it x location
+		assertEquals(15, cell.getX());
+		
+		//Still needs to set up more, but tests to see if It changes it y location
+		assertEquals(15, cell.getX());
+		
 	}
 	
 
