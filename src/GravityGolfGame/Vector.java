@@ -29,6 +29,11 @@ public class Vector {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Vector [x=" + x + ", y=" + y + ", mag=" + mag + "]";
+	}
+	
 	// Override equals check
 	@Override
 	public boolean equals(Object obj) {
