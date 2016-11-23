@@ -14,14 +14,14 @@ import GravityGolfGame.Vector;
 public class TriangleInteractTest {
 
 	// Right facing angle test
-	Triangle triRight45 = new Triangle(new BoardCell(5, 5), Type._45, Orientation.RIGHT);
-	Triangle triRight30 = new Triangle(new BoardCell(5, 5), Type._30, Orientation.RIGHT);
-	Triangle triRight60 = new Triangle(new BoardCell(5, 5), Type._60, Orientation.RIGHT);
+	Triangle triRight45 = new Triangle(new BoardCell(5, 5, false, false), Type._45, Orientation.RIGHT);
+	Triangle triRight30 = new Triangle(new BoardCell(5, 5, false, false), Type._30, Orientation.RIGHT);
+	Triangle triRight60 = new Triangle(new BoardCell(5, 5, false, false), Type._60, Orientation.RIGHT);
 	
 	// Other Facing and Oriented Triangles
-	Triangle triUp45 = new Triangle(new BoardCell(5, 5), Type._45, Orientation.UP);
-	Triangle triLeft45 = new Triangle(new BoardCell(5, 5), Type._45, Orientation.LEFT);
-	Triangle triDown45 = new Triangle(new BoardCell(5, 5), Type._45, Orientation.DOWN);
+	Triangle triUp45 = new Triangle(new BoardCell(5, 5, false, false), Type._45, Orientation.UP);
+	Triangle triLeft45 = new Triangle(new BoardCell(5, 5, false, false), Type._45, Orientation.LEFT);
+	Triangle triDown45 = new Triangle(new BoardCell(5, 5, false, false), Type._45, Orientation.DOWN);
 	
 	// Testing the normal for the triangle at different orientations and angles
 	@Test

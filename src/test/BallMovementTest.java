@@ -13,9 +13,14 @@ public class BallMovementTest {
 	
 	@Test
 	public void BoardCellContains() {
-		BoardCell circle = new BoardCell(20,30);
+		BoardCell cell = new BoardCell(20,30, false, false);
 		
-		assertEquals(false, true);
+		
+		//This tests to see if a boardcell can contain a Circle
+		assertEquals(true, cell.containsBall());
+		
+		//This tests to see if a boardcell can contain a Triangle
+		assertEquals(true, cell.containsTriangle());
 	}
 	
 
