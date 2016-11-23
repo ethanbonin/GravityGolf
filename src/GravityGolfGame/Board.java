@@ -15,8 +15,12 @@ public class Board {
 	public static boolean isGameOver() {
 		//I will create this method when more pars are implemented (Nick)
 		//Player will win when the ball reaches a certain spot, simple condition statement
-		//TO DO: Need to imlplement the ball
+		//TO DO: Need to implement the ball
 		
 		return false;
+	}
+	
+	public static void pauseGame() {
+		
 	}
 }

@@ -6,4 +6,9 @@ public class Ball {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static boolean isBallMoving() {
+		
+		return false;
+	}
+
 }
