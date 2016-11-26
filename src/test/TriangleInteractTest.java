@@ -30,8 +30,8 @@ public class TriangleInteractTest {
 		final double DELTA = 0.000001;
 		
 		// Test Non-hypotenuse Sides
-		assertEquals(new Vector(0, -1), triRight45.getNormal(Orientation.LEFT));
-		assertEquals(new Vector(-1, 0), triRight45.getNormal(Orientation.DOWN));
+		assertEquals(new Vector(-1, 0), triRight45.getNormal(Orientation.LEFT));
+		assertEquals(new Vector(0, -1), triRight45.getNormal(Orientation.DOWN));
 		
 		// Test Angles
 		// Test 30

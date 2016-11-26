@@ -23,6 +23,13 @@ public class Vector {
 	public void setX(double val){ x = val; update(); }
 	public void setY(double val){ y = val; update(); }
 	
+	// Math Ops
+	public static Vector sub(Vector v1, Vector v2){ return new Vector(v1.x - v2.x, v1.y - v2.y); }
+	public static Vector mult(Vector v1, Vector v2){ return new Vector(v1.x * v2.x, v1.y * v2.y); }
+	public static Vector mult(Vector v1, double d){ return new Vector(v1.x * d, v1.y * d); }
+	public static double dot(Vector v1, Vector v2){ return v1.x * v2.x + v1.y * v2.y; }
+	
+	
 	// Private Helpers
 	private void update(){
 		mag = Math.sqrt(x * x + y * y);
