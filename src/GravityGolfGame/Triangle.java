@@ -1,5 +1,8 @@
 package GravityGolfGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Triangle {
 
 	public Triangle() {
@@ -14,12 +17,15 @@ public class Triangle {
 		switch(type){
 		case _30:
 			theta = 30.0;
+			color = Color.blue;
 			break;
 		case _45:
 			theta = 45.0;
+			color = Color.green;
 			break;
 		case _60:
 			theta = 60.0;
+			color = Color.yellow;
 			break;
 		}
 	}
@@ -34,6 +40,15 @@ public class Triangle {
 	private Type type;
 	private Orientation orientation;
 	private double theta;
+	private Color color;
+	
+	public void draw(Graphics g){
+		
+		g.setColor(color);
+		
+		
+		return;
+	}
 	
 	public void setPosition(BoardCell p) { pos = p; }
 	public BoardCell getPosition() { return pos; }

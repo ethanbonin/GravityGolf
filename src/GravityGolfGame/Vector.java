@@ -51,8 +51,6 @@ public class Vector {
 		if (getClass() != obj.getClass())
 			return false;
 		Vector other = (Vector) obj;
-		if (Double.doubleToLongBits(mag) != Double.doubleToLongBits(other.mag))
-			return false;
 		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
 			return false;
 		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))

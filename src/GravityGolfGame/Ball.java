@@ -1,5 +1,7 @@
 package GravityGolfGame;
 
+import java.awt.Color;
+
 public class Ball {
 
 	public Ball() {
@@ -10,8 +12,11 @@ public class Ball {
 	int x;
 	int y;
 	Vector velocity;
+	double radius;
 	
 	boolean isMoving;
+	
+	private Color color;
 	
 	public void move(){
 		x += velocity.getX();
