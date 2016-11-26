@@ -67,7 +67,7 @@ public class Board {
 			String line;
 
 			for (int j = 0; j < NUM_COLS; j++) {
-				this.grid[i][j] = new BoardCell(i, j);
+				this.grid[i][j] = new BoardCell(i, j, false, false);
 			}
 			
 			in.close();

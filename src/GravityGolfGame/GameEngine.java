@@ -3,9 +3,11 @@ package GravityGolfGame;
 public class GameEngine {
 
 	public GameEngine() {
-		// TODO Auto-generated constructor stub
+		board = board.getInstance();
 	}
 
+	private Board board;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

@@ -10,16 +10,19 @@ import GravityGolfGame.Board;
 
 public class GameConditionTest {
 	
+	private static Ball testBall;
+	private static Board board;
+	
 		@BeforeClass
 		public static void setup(){
-			Board board = Board.getInstance();
-			Ball testBall = new Ball();
+			board = Board.getInstance();
+			testBall = new Ball();
 		}
 		
 		@Test
 		public void testPause(){
 			Board.pauseGame();
-			assertEquals(false, Ball.isBallMoving());
+			assertEquals(false, testBall.isBallMoving());
 		}
 		
 		@Test

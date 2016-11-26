@@ -62,6 +62,7 @@ public class Triangle {
 			break;
 		case DOWN:
 			y = -y;
+			break;
 		default:
 			System.out.println("Incorrect Orientation. Triangle.getNormal()");
 			break;
