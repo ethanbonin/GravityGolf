@@ -47,17 +47,27 @@ public class Triangle {
 	
 	public void draw(Graphics g, BoardCell cell){
 		// Original Points
-		int[] xPoints = {0, 0, 1};
-		int[] yPoints = {0, 1, 1};
+		double[] xPointsExact = {0, 0, 1};
+		double[] yPointsExact = {0, 1, 1};
+		if (type == Type._60){ xPointsExact[2] = 0.5; }
+		if (type == Type._30){ yPointsExact[0] = 0.5; }
 		
 		// Scale and Translate
 		// Probably will need to change this based on board drawing
-		for (int i = 0; i < xPoints.length; i++){
-			xPoints[i] *= GameEngine.CELL_SIZE;
-			yPoints[i] *= GameEngine.CELL_SIZE;
+		for (int i = 0; i < xPointsExact.length; i++){
+			xPointsExact[i] *= GameEngine.CELL_SIZE;
+			yPointsExact[i] *= GameEngine.CELL_SIZE;
 			
-			xPoints[i] += cell.getX();
-			yPoints[i] += cell.getYUp();
+			xPointsExact[i] += cell.getX();
+			yPointsExact[i] += cell.getYUp();
+		}
+		
+		// Round to integer
+		int[] xPoints = new int[3];
+		int[] yPoints = new int[3];
+		for (int i = 0; i < xPointsExact.length; i++){
+			xPoints[i] = (int) xPointsExact[i];
+			yPoints[i] = (int) yPointsExact[i];
 		}
 		
 		g.setColor(color);
