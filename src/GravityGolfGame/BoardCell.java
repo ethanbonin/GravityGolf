@@ -14,7 +14,10 @@ public class BoardCell {
 	}
 	
 	public BoardCell(int x, int y, boolean hasTriangle, boolean hasBall){
-		
+		this.x = x;
+		this.y = y;
+		triangle = hasTriangle;
+		ball = hasBall;
 	}
 
 	public char getInitial() {
@@ -77,11 +80,11 @@ public class BoardCell {
 	}
 	
 	public int getX(){
-		return this.x;
+		return x;
 	}
 	
 	public int getYUp(){
-		return this.y;
+		return y;
 	}
 	
 }

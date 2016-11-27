@@ -3,11 +3,9 @@ package GravityGolfGame;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Triangle {
+import javax.swing.JPanel;
 
-	public Triangle() {
-		
-	}
+public class Triangle {
 	
 	public Triangle(BoardCell pos, Type type, Orientation ori) {
 		this.pos = pos;
@@ -25,7 +23,7 @@ public class Triangle {
 			break;
 		case _60:
 			theta = 60.0;
-			color = Color.yellow;
+			color = Color.orange;
 			break;
 		}
 	}
@@ -47,10 +45,23 @@ public class Triangle {
 	private double theta;
 	private Color color;
 	
-	public void draw(Graphics g){
+	public void draw(Graphics g, BoardCell cell){
+		// Original Points
+		int[] xPoints = {0, 0, 1};
+		int[] yPoints = {0, 1, 1};
+		
+		// Scale and Translate
+		// Probably will need to change this based on board drawing
+		for (int i = 0; i < xPoints.length; i++){
+			xPoints[i] *= GameEngine.CELL_SIZE;
+			yPoints[i] *= GameEngine.CELL_SIZE;
+			
+			xPoints[i] += cell.getX();
+			yPoints[i] += cell.getYUp();
+		}
 		
 		g.setColor(color);
-		
+		g.fillPolygon(xPoints, yPoints, xPoints.length);
 		
 		return;
 	}
