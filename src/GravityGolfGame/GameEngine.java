@@ -6,7 +6,7 @@ public class GameEngine {
 		board = board.getInstance();
 	}
 
-	public static final int CELL_SIZE = 25;
+	public static final int CELL_SIZE = 50;
 	private Board board;
 	
 	public static void main(String[] args) {

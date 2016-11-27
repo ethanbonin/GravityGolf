@@ -3,8 +3,6 @@ package GravityGolfGame;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
 public class Triangle {
 	
 	public Triangle(BoardCell pos, Type type, Orientation ori) {
@@ -49,8 +47,30 @@ public class Triangle {
 		// Original Points
 		double[] xPointsExact = {0, 0, 1};
 		double[] yPointsExact = {0, 1, 1};
-		if (type == Type._60){ xPointsExact[2] = 0.5; }
-		if (type == Type._30){ yPointsExact[0] = 0.5; }
+		if (type == Type._60){ xPointsExact[2] = 0.6; }
+		if (type == Type._30){ yPointsExact[0] = 0.4; }
+		
+		// Flip based on orientation
+		if(orientation == Orientation.UP){
+			xPointsExact[0] = xPointsExact[2];
+			if (type == Type._60) {
+				for (int i = 0; i < xPointsExact.length; i++) {
+					xPointsExact[i] += 0.4;
+				}
+			}
+		} 
+		else if(orientation == Orientation.LEFT){
+			xPointsExact[1] = xPointsExact[2];
+			yPointsExact[1] = yPointsExact[0];
+			if (type == Type._60) {
+				for (int i = 0; i < xPointsExact.length; i++) {
+					xPointsExact[i] += 0.4;
+				}
+			}
+		}
+		else if(orientation == Orientation.DOWN){
+			yPointsExact[2] = yPointsExact[0];
+		}
 		
 		// Scale and Translate
 		// Probably will need to change this based on board drawing

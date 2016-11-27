@@ -20,8 +20,7 @@ public class TrianglePane extends JPanel{
 		// TESTING ONLY
 		int i = 0;
 		for (Triangle.Type t : Triangle.Type.values()){
-			new Triangle(null, t, Orientation.RIGHT).draw(g, new BoardCell(10, 10 + i*GameEngine.CELL_SIZE, false, false));
-			System.out.println(t.toString() + " degree Triangle not implemented");
+			new Triangle(null, t, Orientation.DOWN).draw(g, new BoardCell(10, 10 + i*GameEngine.CELL_SIZE, false, false));
 			i++;
 		}
 		
