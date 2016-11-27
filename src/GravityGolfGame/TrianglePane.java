@@ -8,7 +8,7 @@ public class TrianglePane extends JPanel{
 	public TrianglePane() {
 		
 		for (Triangle.Type t : Triangle.Type.values()){
-			
+			System.out.println(t.toString() + " degree Triangle not implemented");
 		}
 		
 	}

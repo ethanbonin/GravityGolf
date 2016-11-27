@@ -31,9 +31,14 @@ public class Triangle {
 	}
 	
 	public enum Type{
-		_30,
-		_45,
-		_60
+		_30 ("30"),
+		_45 ("45"),
+		_60 ("60");
+		
+		private String name;
+		
+		Type(String name){ this.name = name; }
+		public String toString(){ return name; }
 	}
 	
 	private BoardCell pos;
