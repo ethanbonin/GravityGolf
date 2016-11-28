@@ -2,28 +2,80 @@ package GravityGolfGame;
 
 import java.awt.Graphics;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import GravityGolfGame.Triangle.Type;
 
 public class TrianglePane extends JPanel{
 
+	private Orientation orient = Orientation.RIGHT;
+	private Triangle thirty = new Triangle(new BoardCell(0, 0, false, false), Type._30, orient);
+	private Triangle fortyFive = new Triangle(new BoardCell(0, 0, false, false), Type._45, orient);
+	private Triangle sixty = new Triangle(new BoardCell(0, 0, false, false), Type._60, orient);
+	
 	public TrianglePane() {
 		
-		repaint();
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setBorder(new EmptyBorder(10, 5, 5, 5));
+		
+		createTriangleButtons();
+		createFlipButton();
 		
 	}
 	
-	@Override
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
+	private void createTriangleButtons(){
 		
-		// TESTING ONLY
-		int i = 0;
-		for (Triangle.Type t : Triangle.Type.values()){
-			new Triangle(null, t, Orientation.DOWN).draw(g, new BoardCell(10, 10 + i*GameEngine.CELL_SIZE, false, false));
-			i++;
+		add(new JLabel(thirty.getType().toString() + " Degrees"));
+		add(thirty);
+		
+		add(new JLabel(fortyFive.getType().toString() + " Degrees"));
+		add(fortyFive);
+		
+		add(new JLabel(sixty.getType().toString() + " Degrees"));
+		add(sixty);
+		
+		return;
+	}
+	
+	private void createFlipButton(){
+		
+		JButton flip = new JButton("Flip Triangle");
+		flip.addActionListener(e -> update());
+		add(flip);
+		
+		return;
+	}
+	
+	private void update(){
+		
+		switch(orient){
+		case RIGHT:
+			orient = Orientation.UP;
+			break;
+		case UP:
+			orient = Orientation.LEFT;
+			break;
+		case LEFT:
+			orient = Orientation.DOWN;
+			break;
+		case DOWN:
+			orient = Orientation.RIGHT;
+			break;
+		default:
+			System.out.println("Triangle Flip Error. TrianglePane.update");
+			orient = Orientation.RIGHT;
 		}
 		
+		thirty.setOrientaion(orient);
+		fortyFive.setOrientaion(orient);
+		sixty.setOrientaion(orient);
+		
+		repaint();
 		return;
 	}
 

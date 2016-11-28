@@ -3,7 +3,9 @@ package GravityGolfGame;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Triangle {
+import javax.swing.JComponent;
+
+public class Triangle extends JComponent {
 	
 	public Triangle(BoardCell pos, Type type, Orientation ori) {
 		this.pos = pos;
@@ -43,7 +45,13 @@ public class Triangle {
 	private double theta;
 	private Color color;
 	
-	public void draw(Graphics g, BoardCell cell){
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		draw(g);
+	}
+	
+	public void draw(Graphics g){
 		// Original Points
 		double[] xPointsExact = {0, 0, 1};
 		double[] yPointsExact = {0, 1, 1};
@@ -78,8 +86,8 @@ public class Triangle {
 			xPointsExact[i] *= GameEngine.CELL_SIZE;
 			yPointsExact[i] *= GameEngine.CELL_SIZE;
 			
-			xPointsExact[i] += cell.getX();
-			yPointsExact[i] += cell.getYUp();
+			xPointsExact[i] += pos.getX();
+			yPointsExact[i] += pos.getYUp();
 		}
 		
 		// Round to integer
@@ -99,7 +107,10 @@ public class Triangle {
 	public void setPosition(BoardCell p) { pos = p; }
 	public BoardCell getPosition() { return pos; }
 	
+	public void setOrientaion(Orientation o) { orientation = o; }
 	public Orientation getOrientation() { return orientation; }
+	
+	public Type getType(){ return type; }
 	
 	public Vector getNormal(Orientation side) {
 
