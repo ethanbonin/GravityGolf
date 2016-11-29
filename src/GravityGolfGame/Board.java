@@ -10,7 +10,7 @@ public class Board {
 	
 	private static final int MAX_BOARD_SIZE = 100;
 	private static Board theInstance = new Board();
-	private static BoardCell[][] grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+	private static BoardCell[][] grid;
 	String csvFile;
 	
 	private Board() {
@@ -37,12 +37,11 @@ public class Board {
 		csvFile = file;
 	}
 	
-	public void loadBoardConfig() throws FileNotFoundException {
-		BufferedReader fileReader = null;
+	public void loadBoardConfig() throws IOException {
 
 			FileReader readerTwo = new FileReader(csvFile);
 			Scanner in = new Scanner(readerTwo);
-			fileReader = new BufferedReader(new FileReader(csvFile));
+			BufferedReader fileReader = new BufferedReader(new FileReader(csvFile));
 
 			// This while loop detects the number of rows.
 			int value = 0;
@@ -71,6 +70,7 @@ public class Board {
 			}
 			
 			in.close();
+			fileReader.close();
 		}
 
 	public static BoardCell getCellAt(int i, int j) {
