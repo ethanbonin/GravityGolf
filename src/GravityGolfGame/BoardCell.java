@@ -18,13 +18,14 @@ public class BoardCell {
 		this.y = y;
 		triangle = hasTriangle;
 		ball = hasBall;
+		this.boardCellInitial = boardCellInitial;
 	}
 
 	public char getInitial() {
 		return boardCellInitial;
 	}
 	
-	public void setInitial() {
+	public void setInitial(char c) {
 		
 	}
 	
