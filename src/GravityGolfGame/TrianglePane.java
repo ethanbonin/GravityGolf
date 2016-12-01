@@ -1,7 +1,9 @@
 package GravityGolfGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,10 +15,12 @@ import GravityGolfGame.Triangle.Type;
 
 public class TrianglePane extends JPanel{
 
+	// TODO: Implement Click and Drag functionality into the triangles
+	
 	private Orientation orient = Orientation.RIGHT;
-	private Triangle thirty = new Triangle(new BoardCell(0, 0, false, false), Type._30, orient);
-	private Triangle fortyFive = new Triangle(new BoardCell(0, 0, false, false), Type._45, orient);
-	private Triangle sixty = new Triangle(new BoardCell(0, 0, false, false), Type._60, orient);
+	private Triangle thirty = new Triangle(new BoardCell(0, 0), Type._30, orient);
+	private Triangle fortyFive = new Triangle(new BoardCell(0, 0), Type._45, orient);
+	private Triangle sixty = new Triangle(new BoardCell(0, 0), Type._60, orient);
 	
 	public TrianglePane() {
 		

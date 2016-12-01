@@ -45,63 +45,119 @@ public class Triangle extends JComponent {
 	private double theta;
 	private Color color;
 	
+	// TODO: Create Scale, Translate functions scaleTranslateX, Y (double[] x, int scaleFactor, int translateFactor)
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		draw(g);
+
+		int[] xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE * 2, 0);
+		int[] yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE * 2, 0);
+
+		g.setColor(color);
+		g.fillPolygon(xPoints, yPoints, xPoints.length);
+
 	}
 	
 	public void draw(Graphics g){
-		// Original Points
-		double[] xPointsExact = {0, 0, 1};
-		double[] yPointsExact = {0, 1, 1};
-		if (type == Type._60){ xPointsExact[2] = 0.6; }
-		if (type == Type._30){ yPointsExact[0] = 0.4; }
+		// Points array calculations
+		int[] xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		int[] yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		
+		g.setColor(color);
+		g.fillPolygon(xPoints, yPoints, xPoints.length);
+		
+		return;
+	}
+	
+	private double[] getXVert(){
+
+		// Original Points
+		double[] xPointsExact = { 0, 0, 1 };
+		
+		if (type == Type._60) {
+			xPointsExact[2] = 0.6;
+		}
+
 		// Flip based on orientation
-		if(orientation == Orientation.UP){
+		if (orientation == Orientation.UP) {
 			xPointsExact[0] = xPointsExact[2];
 			if (type == Type._60) {
 				for (int i = 0; i < xPointsExact.length; i++) {
 					xPointsExact[i] += 0.4;
 				}
 			}
-		} 
-		else if(orientation == Orientation.LEFT){
+		} else if (orientation == Orientation.LEFT) {
 			xPointsExact[1] = xPointsExact[2];
-			yPointsExact[1] = yPointsExact[0];
 			if (type == Type._60) {
 				for (int i = 0; i < xPointsExact.length; i++) {
 					xPointsExact[i] += 0.4;
 				}
 			}
 		}
-		else if(orientation == Orientation.DOWN){
-			yPointsExact[2] = yPointsExact[0];
+
+		return xPointsExact;
+	}
+	
+	private double[] getYVert(){
+
+		// Original Points
+		double[] yPointsExact = { 0, 1, 1 };
+		
+		if (type == Type._30) {
+			yPointsExact[0] = 0.4;
 		}
+
+		// Flip based on orientation
+		double offBy = yPointsExact[0];
+		if (orientation == Orientation.LEFT) {
+			yPointsExact[1] = yPointsExact[0];
+			for (int i = 0; i < yPointsExact.length; i++) {
+				yPointsExact[i] -= offBy;
+			}
+		} else if (orientation == Orientation.DOWN) {
+			yPointsExact[2] = yPointsExact[0];
+			for (int i = 0; i < yPointsExact.length; i++) {
+				yPointsExact[i] -= offBy;
+			}
+		}
+
+		return yPointsExact;
+	}
+	
+	private int[] scaleTranslateX(double[] values, int scaleFactor, int translateFactor){
 		
 		// Scale and Translate
-		// Probably will need to change this based on board drawing
-		for (int i = 0; i < xPointsExact.length; i++){
-			xPointsExact[i] *= GameEngine.CELL_SIZE;
-			yPointsExact[i] *= GameEngine.CELL_SIZE;
-			
-			xPointsExact[i] += pos.getX();
-			yPointsExact[i] += pos.getYUp();
+		for (int i = 0; i < values.length; i++) {
+			values[i] *= scaleFactor;
+
+			values[i] += pos.getX() * translateFactor - translateFactor;
 		}
-		
+
 		// Round to integer
-		int[] xPoints = new int[3];
-		int[] yPoints = new int[3];
-		for (int i = 0; i < xPointsExact.length; i++){
-			xPoints[i] = (int) xPointsExact[i];
-			yPoints[i] = (int) yPointsExact[i];
+		int[] points = new int[3];
+		for (int i = 0; i < points.length; i++) {
+			points[i] = (int) values[i];
 		}
+
+		return points;
+	}
+	
+	private int[] scaleTranslateY(double[] values, int scaleFactor, int translateFactor){
 		
-		g.setColor(color);
-		g.fillPolygon(xPoints, yPoints, xPoints.length);
-		
-		return;
+		// Scale and Translate
+		for (int i = 0; i < values.length; i++) {
+			values[i] *= scaleFactor;
+
+			values[i] += pos.getYUp() * translateFactor - translateFactor;
+		}
+
+		// Round to integer
+		int[] points = new int[3];
+		for (int i = 0; i < points.length; i++) {
+			points[i] = (int) values[i];
+		}
+
+		return points;
 	}
 	
 	public void setPosition(BoardCell p) { pos = p; }
