@@ -71,6 +71,12 @@ public class Triangle extends JComponent {
 		g.setColor(color);
 		g.fillPolygon(xPoints, yPoints, xPoints.length);
 		
+		// Bounding Box Visualization
+		/*
+		g.setColor(Color.RED);
+		g.drawRect((int)boundingBox.getX(), (int)boundingBox.getY(),(int) boundingBox.width, (int)boundingBox.getHeight());
+		*/
+		
 		return;
 	}
 	
@@ -215,7 +221,13 @@ public class Triangle extends JComponent {
 	
 	public Rectangle getBounds() { return boundingBox; }
 	private void updateBoundingBox(int[] x, int[]y){
-		boundingBox = new Rectangle(x[0], y[0], x[2] - x[0], y[2] - y[0]);
+		if (orientation == Orientation.RIGHT || orientation == Orientation.LEFT){
+			boundingBox = new Rectangle(x[0], y[0], x[2] - x[0], y[2] - y[0]);
+		} else if (orientation == Orientation.DOWN){
+			boundingBox = new Rectangle(x[0] , y[0], x[2] - x[0], y[1] - y[0]);
+		} else {
+			boundingBox = new Rectangle(x[1] , y[0], x[2] - x[1], y[2] - y[0]);
+		}
 	}
 	
 	private Vector calcSideVector(Orientation side){
