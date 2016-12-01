@@ -18,6 +18,7 @@ public class Board extends JPanel {
 	private static Board theInstance = new Board();
 	private BoardCell[][] grid;
 	private ArrayList<Triangle> triangles;
+	private Ball ball;
 	String csvFile;
 	
 	int numCols;
@@ -26,6 +27,7 @@ public class Board extends JPanel {
 	private Board() {
 		grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		triangles = new ArrayList<Triangle>();
+		ball = new Ball();
 	}
 	
 	public static Board getInstance() {
@@ -100,6 +102,9 @@ public class Board extends JPanel {
 			t.draw(g);
 		}
 		
+		// Draw Player Last
+		ball.draw(g);
+		
 	}
 	
 	private void loadBoardConfig() throws IOException {
@@ -122,6 +127,7 @@ public class Board extends JPanel {
 				
 				if (cells[j].charAt(0) == 's'){
 					start = true;
+					ball.setPosition(i, j);
 				} else if (cells[j].charAt(0) == 'e') {
 					end = true;
 				}

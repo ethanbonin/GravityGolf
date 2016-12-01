@@ -41,16 +41,16 @@ public class BoardCell {
 	public void draw(Graphics g, int x, int y){
 		
 		g.setColor(Color.GRAY);
-		if (isStart){
-			g.setColor(Color.CYAN);
-		} else if (isEnd){
+		if (isEnd){
 			g.setColor(Color.GREEN);
 		}
 		
-		// g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		// Draws outlines as opposed to solid cell
+		/**/
+		g.setColor(Color.BLACK);
 		g.drawRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-		
+		/**/
 		return;
 	}
 
