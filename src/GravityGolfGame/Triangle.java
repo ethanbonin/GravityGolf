@@ -2,6 +2,7 @@ package GravityGolfGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 
@@ -11,6 +12,7 @@ public class Triangle extends JComponent {
 		this.pos = pos;
 		this.type = type;
 		orientation = ori;
+		boundingBox = null;
 		
 		switch(type){
 		case _30:
@@ -44,6 +46,7 @@ public class Triangle extends JComponent {
 	private Orientation orientation;
 	private double theta;
 	private Color color;
+	private Rectangle boundingBox;
 	
 	// TODO: Create Scale, Translate functions scaleTranslateX, Y (double[] x, int scaleFactor, int translateFactor)
 	@Override
@@ -62,6 +65,8 @@ public class Triangle extends JComponent {
 		// Points array calculations
 		int[] xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		int[] yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		
+		updateBoundingBox(xPoints, yPoints);
 		
 		g.setColor(color);
 		g.fillPolygon(xPoints, yPoints, xPoints.length);
@@ -206,6 +211,11 @@ public class Triangle extends JComponent {
 		else {
 			return sideNorm;
 		}
+	}
+	
+	public Rectangle getBounds() { return boundingBox; }
+	private void updateBoundingBox(int[] x, int[]y){
+		boundingBox = new Rectangle(x[0], y[0], x[2] - x[0], y[2] - y[0]);
 	}
 	
 	private Vector calcSideVector(Orientation side){
