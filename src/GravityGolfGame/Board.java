@@ -1,6 +1,7 @@
 package GravityGolfGame;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -76,6 +77,31 @@ public class Board extends JPanel {
 		triangles.add(new Triangle(getCellAt(9,9), Type._60, Orientation.LEFT));
 		triangles.add(new Triangle(getCellAt(11,9), Type._60, Orientation.DOWN));
 		*/
+	}
+	
+	public void update(){
+		
+		// Calc new ball pos
+		// See if there will be a collision
+		// Yes, handle collision then move ball
+		// No, move ball
+		// Also check if the ball is in the goal and handle it
+		
+		// Calculate new Position
+		Vector newPos = new Vector(ball.getX() + ball.getVelocity().getX(), ball.getY() + ball.getVelocity().getY());
+		
+		// Get Bounding box
+		// This should be moved to Ball.java
+		Rectangle box = new Rectangle(ball.getX(), ball.getY(), (int)ball.getRadius() * 2, (int)ball.getRadius() * 2);
+		
+		for (Triangle t : triangles){
+			if (box.intersects(t.getBounds())){
+				// TODO
+			}
+		}
+		
+		repaint();
+		return;
 	}
 	
 	@Override

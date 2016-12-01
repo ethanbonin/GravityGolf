@@ -9,14 +9,15 @@ public class Ball {
 		x = 0;
 		y = 0;
 		velocity = new Vector();
+		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
 	}
 	
-	int x;
-	int y;
-	Vector velocity;
-	double radius;
+	private int x;
+	private int y;
+	private Vector velocity;
+	private double radius;
 	
-	boolean isMoving;
+	private boolean isMoving;
 	
 	private Color color;
 	
@@ -34,11 +35,12 @@ public class Ball {
 	public Vector getVelocity(){ return velocity; }
 	public int getX(){ return x; }
 	public int getY(){ return y; }
+	public double getRadius(){ return radius; }
 	
 	public void draw(Graphics g){
 		
 		g.setColor(Color.RED);
-		g.fillOval(x * GameEngine.CELL_SIZE, y * GameEngine.CELL_SIZE, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		g.fillOval(x * GameEngine.CELL_SIZE, y * GameEngine.CELL_SIZE, (int)radius * 2, (int)radius * 2);
 		
 		return;
 	}
