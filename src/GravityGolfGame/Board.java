@@ -57,9 +57,23 @@ public class Board extends JPanel {
 			System.out.println(e.getMessage());
 		}
 		
-		// TEST
-		triangles.add(new Triangle(getCellAt(5,5), Type._45, Orientation.RIGHT));
+		// TEST Triangles (Visual testing)
+		/*
+		triangles.add(new Triangle(getCellAt(5,5), Type._30, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(7,5), Type._30, Orientation.UP));
+		triangles.add(new Triangle(getCellAt(9,5), Type._30, Orientation.LEFT));
+		triangles.add(new Triangle(getCellAt(11,5), Type._30, Orientation.DOWN));
 		
+		triangles.add(new Triangle(getCellAt(5,7), Type._45, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(7,7), Type._45, Orientation.UP));
+		triangles.add(new Triangle(getCellAt(9,7), Type._45, Orientation.LEFT));
+		triangles.add(new Triangle(getCellAt(11,7), Type._45, Orientation.DOWN));
+		
+		triangles.add(new Triangle(getCellAt(5,9), Type._60, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(7,9), Type._60, Orientation.UP));
+		triangles.add(new Triangle(getCellAt(9,9), Type._60, Orientation.LEFT));
+		triangles.add(new Triangle(getCellAt(11,9), Type._60, Orientation.DOWN));
+		*/
 	}
 	
 	@Override
