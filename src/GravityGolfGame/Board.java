@@ -5,15 +5,19 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JPanel;
+
+import GravityGolfGame.Triangle.Type;
 
 public class Board extends JPanel {
 	
 	private static final int MAX_BOARD_SIZE = 100;
 	private static Board theInstance = new Board();
-	private static BoardCell[][] grid;
+	private BoardCell[][] grid;
+	private ArrayList<Triangle> triangles;
 	String csvFile;
 	
 	int numCols;
@@ -21,6 +25,7 @@ public class Board extends JPanel {
 	
 	private Board() {
 		grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		triangles = new ArrayList<Triangle>();
 	}
 	
 	public static Board getInstance() {
@@ -52,6 +57,9 @@ public class Board extends JPanel {
 			System.out.println(e.getMessage());
 		}
 		
+		// TEST
+		triangles.add(new Triangle(getCellAt(5,5), Type._45, Orientation.RIGHT));
+		
 	}
 	
 	@Override
@@ -71,6 +79,11 @@ public class Board extends JPanel {
 			}
 			x = 0;
 			y += GameEngine.CELL_SIZE;
+		}
+		
+		// Draw Triangles
+		for (Triangle t : triangles){
+			t.draw(g);
 		}
 		
 	}

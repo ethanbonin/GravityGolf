@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class GameEngine extends JFrame {
 
-	public static final int CELL_SIZE = 40;
+	public static final int CELL_SIZE = 20;
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;

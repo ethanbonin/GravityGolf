@@ -47,9 +47,11 @@ public class BoardCell {
 			g.setColor(Color.GREEN);
 		}
 		
-		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-		//g.drawRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-	
+		// g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		// Draws outlines as opposed to solid cell
+		g.drawRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		
+		return;
 	}
 
 	public char getInitial() {
