@@ -1,5 +1,8 @@
 package GravityGolfGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class BoardCell {
 	
 	char boardCellInitial;
@@ -32,6 +35,21 @@ public class BoardCell {
 	public BoardCell(int x, int y, boolean isStart, boolean isEnd, char initial){
 		this(x, y, isStart, isEnd);
 		boardCellInitial = initial;
+	}
+	
+	
+	public void draw(Graphics g, int x, int y){
+		
+		g.setColor(Color.GRAY);
+		if (isStart){
+			g.setColor(Color.CYAN);
+		} else if (isEnd){
+			g.setColor(Color.GREEN);
+		}
+		
+		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		//g.drawRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+	
 	}
 
 	public char getInitial() {

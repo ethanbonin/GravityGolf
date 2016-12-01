@@ -1,12 +1,15 @@
 package GravityGolfGame;
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Board {
+import javax.swing.JPanel;
+
+public class Board extends JPanel {
 	
 	private static final int MAX_BOARD_SIZE = 100;
 	private static Board theInstance = new Board();
@@ -47,6 +50,27 @@ public class Board {
 		} catch (IOException e) {
 			System.out.println(e);
 			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		
+		int x = 0;
+		int y = 0;
+		
+		// Draw Grid
+		for(BoardCell[] b : grid){
+			for(BoardCell c : b){
+				if (c != null) {
+					c.draw(g, x, y);
+					x += GameEngine.CELL_SIZE;
+				}
+			}
+			x = 0;
+			y += GameEngine.CELL_SIZE;
 		}
 		
 	}
