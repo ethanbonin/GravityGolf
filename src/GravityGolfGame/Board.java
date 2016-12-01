@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import clueGame.Card;
-import clueGame.CardType;
 
 public class Board {
 	

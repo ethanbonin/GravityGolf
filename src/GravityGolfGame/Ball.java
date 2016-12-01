@@ -27,6 +27,7 @@ public class Ball {
 	public Vector getVelocity(){ return velocity; }
 	public int getX(){ return x; }
 	public int getY(){ return y; }
+	
 
 	public boolean isBallMoving() {
 		
