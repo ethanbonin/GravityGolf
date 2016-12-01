@@ -6,6 +6,8 @@ public class BoardCell {
 	private boolean triangle;
 	private boolean ball;
 	private boolean win;
+	private boolean isStart;
+	private boolean isEnd;
 	private int x;
 	private int y;
 	
@@ -13,12 +15,23 @@ public class BoardCell {
 		
 	}
 	
-	public BoardCell(int x, int y, boolean hasTriangle, boolean hasBall){
+	
+	// NOTE, either we don't need the initial stored, or we don't need the start/end/ball/tri/etc. stored
+	public BoardCell(int x, int y){
 		this.x = x;
 		this.y = y;
-		triangle = hasTriangle;
-		ball = hasBall;
-		this.boardCellInitial = boardCellInitial;
+	}
+	
+	public BoardCell(int x, int y, boolean isStart, boolean isEnd){
+		this.x = x;
+		this.y = y;
+		this.isStart = isStart;
+		this.isEnd = isEnd;
+	}
+	
+	public BoardCell(int x, int y, boolean isStart, boolean isEnd, char initial){
+		this(x, y, isStart, isEnd);
+		boardCellInitial = initial;
 	}
 
 	public char getInitial() {

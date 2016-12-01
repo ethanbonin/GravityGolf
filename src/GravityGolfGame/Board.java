@@ -6,9 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import clueGame.Card;
-import clueGame.CardType;
-
 public class Board {
 	
 	private static final int MAX_BOARD_SIZE = 100;
@@ -16,8 +13,11 @@ public class Board {
 	private static BoardCell[][] grid;
 	String csvFile;
 	
+	int numCols;
+	int numRows;
+	
 	private Board() {
-		
+		grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	}
 	
 	public static Board getInstance() {
@@ -40,51 +40,49 @@ public class Board {
 		csvFile = file;
 	}
 	
-	public void loadBoardConfig() throws IOException {
-
-		    final String DELIMITERTWO = ",";
-			FileReader readerTwo = new FileReader(csvFile);
-			Scanner in = new Scanner(readerTwo);
-			BufferedReader fileReader = new BufferedReader(new FileReader(csvFile));
-
-			// This while loop detects the number of rows.
-			int value = 0;
-			String word = "";
-			while (in.hasNextLine()) {
-				word = in.nextLine();
-				value++;
-			}
-
-
-			int NUM_COLS = word.length();
-			int NUM_ROWS = value;
-
-			this.grid = new BoardCell[NUM_ROWS][NUM_COLS];
-
-			int i = 0;
-			int count = 0;
-			String line = "";
-			int location = 0;
-			char letter = 0;
-
-			// Get all tokens available in line
-			String[] letterList = line.split(DELIMITERTWO);
-			location++;
-			// This grabs all the letters for the keys
-			for (int j = 0; i < letterList.length; i++) {
-				letter = letterList[i].charAt(0);
-			}
-			
-			for (int j = 0; j < NUM_COLS; j++) {
-				this.grid[i][j] = new BoardCell(i, j, false, false);
-				this.grid[i][j].setInitial(letter);
-			}
-			
-			in.close();
-			fileReader.close();
+	public void load(){
+		
+		try {
+			loadBoardConfig();
+		} catch (IOException e) {
+			System.out.println(e);
+			System.out.println(e.getMessage());
 		}
+		
+	}
+	
+	private void loadBoardConfig() throws IOException {
+		
+		FileReader file = new FileReader(csvFile);
+		BufferedReader in = new BufferedReader(file);
 
-	public static BoardCell getCellAt(int i, int j) {
+		String line;
+		int i = 0;
+		while ((line = in.readLine()) != null) {
+
+			String[] cells = line.split(",");
+			
+			numCols = cells.length;
+			
+			for (int j = 0; j < cells.length; j++) {
+				
+				boolean start = false;
+				boolean end = false;
+				
+				if (cells[j].charAt(0) == 's'){
+					start = true;
+				} else if (cells[j].charAt(0) == 'e') {
+					end = true;
+				}
+
+				grid[i][j] = new BoardCell(i, j, start, end, cells[j].charAt(0));
+			}
+			i++;
+		}
+		numRows = i;
+	}
+
+	public BoardCell getCellAt(int i, int j) {
 		return grid[i][j];
 	}
 }

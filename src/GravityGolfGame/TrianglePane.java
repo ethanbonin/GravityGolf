@@ -13,6 +13,8 @@ import GravityGolfGame.Triangle.Type;
 
 public class TrianglePane extends JPanel{
 
+	// TODO: Implement Click and Drag functionality into the triangles
+	
 	private Orientation orient = Orientation.RIGHT;
 	private Triangle thirty = new Triangle(new BoardCell(0, 0, false, false), Type._30, orient);
 	private Triangle fortyFive = new Triangle(new BoardCell(0, 0, false, false), Type._45, orient);
