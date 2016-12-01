@@ -29,8 +29,8 @@ public class BallBounce extends Ball {
 				+ normal.getX() * Math.cos(Math.toRadians(90 - slopeAngle));
 
 		// get new Y component of vector
-		newVectorY = tangent.getX() * Math.cos(Math.toRadians(slopeAngle))
-				+ normal.getX() * Math.cos(Math.toRadians(90 - slopeAngle));
+		newVectorY = tangent.getY() * Math.cos(Math.toRadians(slopeAngle))
+				+ normal.getY() * Math.cos(Math.toRadians(90 - slopeAngle));
 
 		return new Vector(newVectorX,newVectorY);
 	}
