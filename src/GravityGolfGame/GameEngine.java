@@ -1,17 +1,50 @@
 package GravityGolfGame;
 
-public class GameEngine {
+import java.awt.BorderLayout;
 
-	public static final int CELL_SIZE = 50;
+import javax.swing.JFrame;
+
+public class GameEngine extends JFrame {
+
+	public static final int CELL_SIZE = 20;
 	private Board board;
+	private TrianglePane triUI;
+	private GameControls controlUI;
 	
 	public GameEngine() {
-		this.board = board.getInstance();
+		board = board.getInstance();
+		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
+		board.setConfigFiles("src/Data/testBoard.csv");
+		board.load();
+		
+		triUI = new TrianglePane();
+		controlUI = new GameControls();
+		
+		loadUI();
+	}
+	
+	private void loadUI(){
+		
+		setSize(CELL_SIZE* 15, CELL_SIZE * 15);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		add(controlUI, BorderLayout.PAGE_START);
+		add(board, BorderLayout.CENTER);
+		add(triUI, BorderLayout.LINE_END);
+		
+		return;
+	}
+	
+	// TODO
+	private void timer(){
+		
+		
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//GameEngine gameEngine = new GameEngine();
+		
+		GameEngine gravityGolf = new GameEngine();
+		gravityGolf.setVisible(true);
 
 	}
 
