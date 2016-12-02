@@ -1,19 +1,25 @@
 package GravityGolfGame;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
 
 public class GameEngine extends JFrame {
 
+	private static GameEngine engine = new GameEngine();
 	public static final int CELL_SIZE = 20;
+	public static final int FPS = 20;
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
 	
-	public GameEngine() {
+	public static GameEngine theInstance(){ return engine; }
+	
+	private GameEngine() {
 		board = board.getInstance();
 		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
 		board.setConfigFiles("src/Data/testBoard.csv");
@@ -37,29 +43,15 @@ public class GameEngine extends JFrame {
 		return;
 	}
 	
-	public void Test(){
-		// TESTING
-		try {
-			Thread.sleep(20);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		while (true) {
-			timer();
-		}
+	// TODO
+	public void timer(){
+		Timer timer = new Timer(FPS, new TimerListener());
+		timer.start();
 	}
 	
-	// TODO
-	private void timer(){
-		
-		// TEST
-		board.update();
-		
-		try {
-			Thread.sleep(20);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	private class TimerListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			board.update();
 		}
 	}
 	
@@ -67,7 +59,6 @@ public class GameEngine extends JFrame {
 		
 		GameEngine gravityGolf = new GameEngine();
 		gravityGolf.setVisible(true);
-		gravityGolf.Test();
 	}
 
 }
