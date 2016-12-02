@@ -14,17 +14,27 @@ public class Ball {
 	private Color color;
 	
 	public Ball() {
-		x = 0;
-		y = 0;
+		setStartLocation(0,20);
 		this.isMoving = false;
-		velocity = new Vector();
+		velocity = new Vector(0,0);
 		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
 		this.trajectory = new Vector(0,1);
 	}
 	
+	public void setStartLocation(int startLocationX, int startLocationY) {
+		this.x = startLocationX;
+		this.y = startLocationY;
+	}
+	
+	//We need to initialize velocity when the start button is pressed
+	
 	public void move(){
-		x += velocity.getX();
-		y += velocity.getY();
+		//x += velocity.getX();
+		//y += velocity.getY();
+		Vector moveVector = new Vector();
+		moveVector = Vector.mult(velocity, trajectory);
+		x += moveVector.getX();
+		y += moveVector.getY();
 	}
 	
 	
