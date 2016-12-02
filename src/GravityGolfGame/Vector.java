@@ -22,6 +22,7 @@ public class Vector {
 	public double getMag() { return mag; }
 	public void setX(double val){ x = val; update(); }
 	public void setY(double val){ y = val; update(); }
+	public void negate(){x = -x; y = -y;}
 	
 	// Math Ops
 	public static Vector sub(Vector v1, Vector v2){ return new Vector(v1.x - v2.x, v1.y - v2.y); }

@@ -182,7 +182,7 @@ public class Triangle extends JComponent {
 	public Vector getNormal(Orientation side) {
 
 		// Determine Side Vector
-		Vector sideNorm = calcSideVector(side);
+		Vector sideNorm = side.getVector();
 		
 		// Calculate Default Normal
 		double x = Math.cos(Math.toRadians(90 - theta));
@@ -230,22 +230,5 @@ public class Triangle extends JComponent {
 		}
 	}
 	
-	private Vector calcSideVector(Orientation side){
-		
-		if (side == Orientation.RIGHT){
-			return new Vector(1, 0);
-		} else if (side == Orientation.UP){
-			return new Vector(0, 1);
-		} else if (side == Orientation.LEFT){
-			return new Vector(-1, 0);
-		} else if (side == Orientation.DOWN){
-			return new Vector(0, -1);
-		}
-		else {
-			System.out.println("Incorrect Orientation. Triangle.getNormal() calcSideVector");
-		}
-		
-		return null;
-	}
 
 }

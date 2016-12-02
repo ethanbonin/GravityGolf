@@ -31,15 +31,8 @@ public class Ball {
 	//We need to initialize velocity when the start button is pressed(1,0) or something
 	
 	public void move(){
-		//x += velocity.getX();
-		//y += velocity.getY();
-		Vector moveVector = new Vector();
-		moveVector = Vector.mult(velocity, trajectory);
-		x += moveVector.getX();
-		y += moveVector.getY();
-		
-		
-		
+		x += velocity.getX();
+		y += velocity.getY();
 	}
 	
 	
