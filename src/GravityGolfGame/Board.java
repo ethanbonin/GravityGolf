@@ -35,7 +35,7 @@ public class Board extends JPanel {
 		return theInstance;
 	}
 
-	public static boolean isGameOver() {
+	public static boolean isGameOver(Ball ball) {
 		if (grid[ball.getX()][ball.getY()].getInitial() == 'e') {
 			return true;
 		}
@@ -140,6 +140,8 @@ public class Board extends JPanel {
 	}
 	
 	private void loadBoardConfig() throws IOException {
+		
+		setConfigFiles("src/Data/GravityGolfBoard.csv");
 		
 		FileReader file = new FileReader(csvFile);
 		BufferedReader in = new BufferedReader(file);
