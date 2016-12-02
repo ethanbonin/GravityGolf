@@ -141,8 +141,6 @@ public class Board extends JPanel {
 	
 	private void loadBoardConfig() throws IOException {
 		
-		setConfigFiles("src/Data/GravityGolfBoard.csv");
-		
 		FileReader file = new FileReader(csvFile);
 		BufferedReader in = new BufferedReader(file);
 
