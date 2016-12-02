@@ -65,9 +65,6 @@ public class BoardCell {
 		return boardCellInitial;
 	}
 	
-	public void setInitial(char c) {
-		
-	}
 	
 	//This actually returns back if it contains a triangle or not. 
 	public boolean containsTriangle() {
@@ -79,16 +76,6 @@ public class BoardCell {
 		this.triangle = set;
 	}
 	
-	//This actually returns back if it contains a ball or not. 
-	public boolean containsBall(){
-		return this.ball;
-	}
-	
-	//To set the BoardCell to set the hold the Ball
-	public void setBall(boolean set) {
-		this.ball = set;
-	}
-	
 	//This returns the BoardCell to have the winning Condition. 
 	public boolean containsWin() {
 		return this.win;
@@ -98,7 +85,6 @@ public class BoardCell {
 	public void setWin(boolean set) {
 		this.win = set;
 	}
-	
 	
 	//This is the simple set to when it the ball is traveling right.
 	public void changeXRight(int dx){
@@ -127,5 +113,6 @@ public class BoardCell {
 	public int getYUp(){
 		return y;
 	}
+	
 	
 }
