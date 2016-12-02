@@ -7,8 +7,8 @@ public class Ball {
 	
 	public static double VELOCITY_CONSTANT = 1.0;
 	public static double ACCELERATION_CONSTANT = 1.0;
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 	protected Vector velocity;
 	protected Vector trajectory;
 	private double radius;
@@ -31,8 +31,8 @@ public class Ball {
 	//We need to initialize velocity when the start button is pressed(1,0) or something
 	
 	public void move(){
-		x += (int) Math.ceil(velocity.getX());
-		y += (int) Math.ceil(velocity.getY());
+		x += velocity.getX();
+		y += velocity.getY();
 	}
 	
 	
@@ -51,13 +51,13 @@ public class Ball {
 	}
 	public void setVelocity(Vector v){ velocity = v; }
 	public Vector getVelocity(){ return velocity; }
-	public int getX(){ return x; }
-	public int getY(){ return y; }
+	public int getX(){ return (int)x; }
+	public int getY(){ return (int)y; }
 	public double getRadius(){ return radius; }
 	
 	public void draw(Graphics g){
 		g.setColor(Color.RED);
-		g.fillOval(x, y, (int)radius * 2, (int)radius * 2);
+		g.fillOval((int)x, (int)y, (int)radius * 2, (int)radius * 2);
 		return;
 	}
 
