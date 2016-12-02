@@ -8,12 +8,14 @@ import org.junit.Test;
 import GravityGolfGame.Ball;
 import GravityGolfGame.Board;
 import GravityGolfGame.BoardCell;
+import GravityGolfGame.GameEngine;
 
 public class GameConditionTest {
 	
 	private static Ball testBall = new Ball();
 	private static Board board;
 	private static BoardCell testCell = new BoardCell(1, 1, false, true);
+	private static GameEngine testGame = new GameEngine();
 	
 	
 		@BeforeClass
@@ -25,7 +27,7 @@ public class GameConditionTest {
 		
 		@Test
 		public void testPause(){
-			Board.pauseGame();
+			testGame.stopTimer();
 			assertEquals(false, testBall.isBallMoving());
 		}
 		

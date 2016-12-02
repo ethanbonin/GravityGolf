@@ -20,7 +20,7 @@ public class GameEngine extends JFrame {
 	
 	public static GameEngine theInstance(){ return engine; }
 	
-	private GameEngine() {
+	public GameEngine() {
 		board = board.getInstance();
 		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
 		board.setConfigFiles("src/Data/testBoard.csv");
