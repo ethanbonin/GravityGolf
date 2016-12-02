@@ -90,6 +90,7 @@ public class Board extends JPanel {
 		
 		// Calculate new Position
 		Vector newPos = new Vector(ball.getX() + ball.getVelocity().getX(), ball.getY() + ball.getVelocity().getY());
+		Vector velocity = ball.getVelocity();
 		
 		// Get Bounding box
 		// This should be moved to Ball.java
@@ -97,7 +98,16 @@ public class Board extends JPanel {
 		
 		for (Triangle t : triangles){
 			if (box.intersects(t.getBounds())){
-				// TODO
+				// Determine which side the ball is hitting
+				velocity.negate();
+				double min = Vector.dot(velocity, Orientation.RIGHT.getVector());
+				Orientation side = Orientation.RIGHT;
+				for (Orientation o : Orientation.values()){
+					double dot = Vector.dot(velocity, o.getVector());
+					if (dot <= min){
+						side = o;
+					}
+				}
 			}
 		}
 		
