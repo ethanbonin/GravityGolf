@@ -8,6 +8,7 @@ public class Ball {
 	protected int x;
 	protected int y;
 	protected Vector velocity;
+	protected Vector trajectory;
 	private double radius;
 	boolean isMoving;
 	private Color color;
@@ -18,6 +19,7 @@ public class Ball {
 		this.isMoving = false;
 		velocity = new Vector();
 		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
+		this.trajectory = new Vector(0,1);
 	}
 	
 	public void move(){
@@ -25,6 +27,15 @@ public class Ball {
 		y += velocity.getY();
 	}
 	
+	
+	public Vector getTrajectory() {
+		return trajectory;
+	}
+
+	public void setTrajectory(Vector trajectory) {
+		this.trajectory = trajectory;
+	}
+
 	public void setPosition(int xPos, int yPos){
 		// flip rows and cols
 		y = xPos;

@@ -3,26 +3,24 @@ package GravityGolfGame;
 public class BallBounce extends Ball {
 
 	private Vector normal;
-	private Vector incomingTrajectory;
 	private int slopeAngle;
 	private double newVectorX;
 	private double newVectorY;
 	
 	
 
-	public BallBounce(Vector normal, Vector incomingTrajectory, int slopeAngle) {
+	public BallBounce(Vector normal, int slopeAngle) {
 		super();
 		this.normal = normal;
-		this.incomingTrajectory = incomingTrajectory;
 		this.slopeAngle = slopeAngle;
 	}
 
 
 
-	public Vector getNewTrajectory() {
+	public void getNewTrajectory() {
 		// get current velocity and trajectory of the ball
 		Vector tangent = new Vector();
-		tangent.sub(incomingTrajectory, normal);
+		tangent = Vector.sub(this.getTrajectory(), normal);
 		
 		// get new X component of vector
 		newVectorX = tangent.getX() * Math.cos(Math.toRadians(slopeAngle))
@@ -32,7 +30,7 @@ public class BallBounce extends Ball {
 		newVectorY = tangent.getY() * Math.cos(Math.toRadians(slopeAngle))
 				+ normal.getY() * Math.cos(Math.toRadians(90 - slopeAngle));
 
-		return new Vector(newVectorX,newVectorY);
+		this.setTrajectory(new Vector(newVectorX,newVectorY));
 	}
 	
 	public Vector getNewVelocity() {
