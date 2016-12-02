@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
+
 public class GameEngine extends JFrame {
 
 	public static final int CELL_SIZE = 20;
@@ -25,7 +27,7 @@ public class GameEngine extends JFrame {
 	
 	private void loadUI(){
 		
-		setSize(CELL_SIZE* 15, CELL_SIZE * 15);
+		setSize(CELL_SIZE* 35, CELL_SIZE * 30);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		add(controlUI, BorderLayout.PAGE_START);
@@ -35,17 +37,38 @@ public class GameEngine extends JFrame {
 		return;
 	}
 	
+	public void Test(){
+		// TESTING
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+				
+				while(isFocused()){
+					System.out.println(isFocused());
+				timer();
+				}
+	}
+	
 	// TODO
 	private void timer(){
 		
+		// TEST
+		board.update();
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
 		
 		GameEngine gravityGolf = new GameEngine();
 		gravityGolf.setVisible(true);
-
+		gravityGolf.Test();
 	}
 
 }
