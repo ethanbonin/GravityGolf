@@ -22,7 +22,7 @@ public class GameControls extends JPanel {
 	private void createButtons(){
 		
 		JButton start = new JButton("Start");
-		start.addActionListener(e -> System.out.println("Not implemented"));
+		start.addActionListener(e -> GameEngine.theInstance().timer());
 		add(start);
 		
 		JButton stop = new JButton("Stop");

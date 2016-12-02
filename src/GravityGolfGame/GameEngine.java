@@ -10,13 +10,16 @@ import javax.swing.Timer;
 
 public class GameEngine extends JFrame {
 
+	private static GameEngine engine = new GameEngine();
 	public static final int CELL_SIZE = 20;
 	public static final int FPS = 20;
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
 	
-	public GameEngine() {
+	public static GameEngine theInstance(){ return engine; }
+	
+	private GameEngine() {
 		board = board.getInstance();
 		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
 		board.setConfigFiles("src/Data/testBoard.csv");

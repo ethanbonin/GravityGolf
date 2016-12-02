@@ -56,6 +56,7 @@ public class Triangle extends JComponent {
 		int[] yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE * 2, 0);
 
 		g.setColor(color);
+		// May be problems here with null pointers on loading?
 		g.fillPolygon(xPoints, yPoints, xPoints.length);
 
 	}
