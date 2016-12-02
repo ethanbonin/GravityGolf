@@ -16,11 +16,11 @@ public class Ball {
 	private Color color;
 	
 	public Ball() {
-		//setStartLocation(1,20);
+		setStartLocation(2,20);
 		this.isMoving = false;
-		velocity = new Vector(0,0);
+		velocity = new Vector(1,1);
 		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
-		this.trajectory = new Vector(0,1);
+		this.trajectory = new Vector(1,1);
 	}
 	
 	public void setStartLocation(int startLocationX, int startLocationY) {
