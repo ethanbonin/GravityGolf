@@ -60,15 +60,12 @@ public class Ball {
 	public double getRadius(){ return radius; }
 	
 	public void draw(Graphics g){
-		
 		g.setColor(Color.RED);
 		g.fillOval(x, y, (int)radius * 2, (int)radius * 2);
-		
 		return;
 	}
 
 	public boolean isBallMoving() {
-		
 		return isMoving;
 	}
 

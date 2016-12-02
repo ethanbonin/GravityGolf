@@ -42,10 +42,17 @@ public class BoardCell {
 		
 		g.setColor(Color.GRAY);
 		if (isEnd){
-			g.setColor(Color.GREEN);
+			g.setColor(Color.MAGENTA);
 		}
 		
 		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		
+		if (boardCellInitial == 'S'){
+			g.setColor(Color.GREEN);
+			g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		}
+		
+		
 		// Draws outlines as opposed to solid cell
 		/**/
 		g.setColor(Color.BLACK);
