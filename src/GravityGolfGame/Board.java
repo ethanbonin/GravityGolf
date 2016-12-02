@@ -28,7 +28,7 @@ public class Board extends JPanel {
 		grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		triangles = new ArrayList<Triangle>();
 		ball = new Ball();
-		ball.setVelocity(new Vector(0, .5));
+		ball.setVelocity(new Vector(0, 1));
 	}
 	
 	public static Board getInstance() {
@@ -100,7 +100,7 @@ public class Board extends JPanel {
 			}
 		}
 		
-		ball.setVelocity(newPos);
+		
 		ball.move();
 		
 		repaint();
@@ -156,7 +156,7 @@ public class Board extends JPanel {
 				
 				if (cells[j].charAt(0) == 's'){
 					start = true;
-					ball.setPosition(i, j);
+					ball.setPosition(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
 				} else if (cells[j].charAt(0) == 'e') {
 					end = true;
 				}

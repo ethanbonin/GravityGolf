@@ -40,15 +40,14 @@ public class GameEngine extends JFrame {
 	public void Test(){
 		// TESTING
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-				
-				while(isFocused()){
-					System.out.println(isFocused());
-				timer();
-				}
+
+		while (true) {
+			timer();
+		}
 	}
 	
 	// TODO
@@ -58,7 +57,7 @@ public class GameEngine extends JFrame {
 		board.update();
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
