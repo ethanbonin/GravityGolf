@@ -35,10 +35,8 @@ public class Ball {
 		//y += velocity.getY();
 		Vector moveVector = new Vector();
 		moveVector = Vector.mult(velocity, trajectory);
-		x += moveVector.getX();
-		y += moveVector.getY();
-		
-		
+		this.x += moveVector.getX();
+		this.y += moveVector.getY();
 		
 	}
 	
