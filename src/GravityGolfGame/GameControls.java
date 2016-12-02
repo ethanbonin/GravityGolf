@@ -1,5 +1,6 @@
 package GravityGolfGame;
 
+import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JButton;
