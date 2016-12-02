@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 public class Ball {
 	
+	public static double VELOCITY_CONSTANT = 1.0;
+	public static double ACCELERATION_CONSTANT = 1.0;
 	protected int x;
 	protected int y;
 	protected Vector velocity;
@@ -26,7 +28,7 @@ public class Ball {
 		this.y = startLocationY;
 	}
 	
-	//We need to initialize velocity when the start button is pressed
+	//We need to initialize velocity when the start button is pressed(1,0) or something
 	
 	public void move(){
 		//x += velocity.getX();
