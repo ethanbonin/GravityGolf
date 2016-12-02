@@ -16,7 +16,7 @@ public class Ball {
 	private Color color;
 	
 	public Ball() {
-		setStartLocation(0,20);
+		//setStartLocation(1,20);
 		this.isMoving = false;
 		velocity = new Vector(0,0);
 		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
@@ -37,7 +37,6 @@ public class Ball {
 		moveVector = Vector.mult(velocity, trajectory);
 		this.x += moveVector.getX();
 		this.y += moveVector.getY();
-		
 	}
 	
 	

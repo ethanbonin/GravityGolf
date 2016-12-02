@@ -42,12 +42,4 @@ public class GameControls extends JPanel {
 	}
 	
 
-	// TESTING ONLY
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setSize(400, 100);
-		frame.add(new GameControls());
-		frame.setVisible(true);
-	}
-
 }

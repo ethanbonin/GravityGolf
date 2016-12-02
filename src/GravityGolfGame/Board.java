@@ -102,6 +102,8 @@ public class Board extends JPanel {
 		}
 		
 		
+		
+		
 		ball.move();
 		
 		repaint();
