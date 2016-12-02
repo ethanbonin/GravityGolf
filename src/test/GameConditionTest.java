@@ -13,6 +13,7 @@ public class GameConditionTest {
 	private static Ball testBall;
 	private static Board board;
 	
+	
 		@BeforeClass
 		public static void setup(){
 			board = Board.getInstance();

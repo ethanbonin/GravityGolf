@@ -16,9 +16,9 @@ public class Board extends JPanel {
 	
 	private static final int MAX_BOARD_SIZE = 100;
 	private static Board theInstance = new Board();
-	private BoardCell[][] grid;
+	private static BoardCell[][] grid;
 	private ArrayList<Triangle> triangles;
-	private Ball ball;
+	private static Ball ball;
 	String csvFile;
 	
 	int numCols;
@@ -36,11 +36,12 @@ public class Board extends JPanel {
 	}
 
 	public static boolean isGameOver() {
-		//I will create this method when more pars are implemented (Nick)
-		//Player will win when the ball reaches a certain spot, simple condition statement
-		//TO DO: Need to implement the ball
-		
-		return false;
+		if (grid[ball.getX()][ball.getY()].getInitial() == 'e') {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public static void pauseGame() {
