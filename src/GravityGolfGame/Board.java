@@ -28,6 +28,7 @@ public class Board extends JPanel {
 		grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		triangles = new ArrayList<Triangle>();
 		ball = new Ball();
+		ball.setVelocity(new Vector(0, 1));
 	}
 	
 	public static Board getInstance() {
@@ -91,13 +92,16 @@ public class Board extends JPanel {
 		
 		// Get Bounding box
 		// This should be moved to Ball.java
-		Rectangle box = new Rectangle(ball.getX(), ball.getY(), (int)ball.getRadius() * 2, (int)ball.getRadius() * 2);
+		Rectangle box = new Rectangle((int)newPos.getX(), (int)newPos.getY(), (int)ball.getRadius() * 2, (int)ball.getRadius() * 2);
 		
 		for (Triangle t : triangles){
 			if (box.intersects(t.getBounds())){
 				// TODO
 			}
 		}
+		
+		
+		ball.move();
 		
 		repaint();
 		return;
@@ -152,7 +156,7 @@ public class Board extends JPanel {
 				
 				if (cells[j].charAt(0) == 's'){
 					start = true;
-					ball.setPosition(i, j);
+					ball.setPosition(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
 				} else if (cells[j].charAt(0) == 'e') {
 					end = true;
 				}

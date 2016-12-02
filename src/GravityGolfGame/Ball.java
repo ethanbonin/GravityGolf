@@ -60,7 +60,7 @@ public class Ball {
 	public void draw(Graphics g){
 		
 		g.setColor(Color.RED);
-		g.fillOval(x * GameEngine.CELL_SIZE, y * GameEngine.CELL_SIZE, (int)radius * 2, (int)radius * 2);
+		g.fillOval(x, y, (int)radius * 2, (int)radius * 2);
 		
 		return;
 	}

@@ -48,7 +48,6 @@ public class Triangle extends JComponent {
 	private Color color;
 	private Rectangle boundingBox;
 	
-	// TODO: Create Scale, Translate functions scaleTranslateX, Y (double[] x, int scaleFactor, int translateFactor)
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
