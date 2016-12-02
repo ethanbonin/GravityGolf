@@ -116,6 +116,10 @@ public class Board extends JPanel {
 				Vector norm = t.getNormal(side);
 				velocity.negate();
 				velocity = Vector.mult(Vector.sub(velocity, Vector.mult(Vector.mult(norm, Vector.dot(velocity, norm)), 2)), velocity.getMag());
+				System.out.println(velocity.getMag());
+				velocity = Vector.mult(norm, velocity.getMag());
+				
+				
 				System.out.println(velocity.toString());
 			}
 		}

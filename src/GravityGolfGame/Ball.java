@@ -31,8 +31,8 @@ public class Ball {
 	//We need to initialize velocity when the start button is pressed(1,0) or something
 	
 	public void move(){
-		x += velocity.getX();
-		y += velocity.getY();
+		x += (int) Math.ceil(velocity.getX());
+		y += (int) Math.ceil(velocity.getY());
 	}
 	
 	

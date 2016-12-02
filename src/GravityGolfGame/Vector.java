@@ -5,11 +5,13 @@ public class Vector {
 	public Vector() {
 		x = 0;
 		y = 0;
+		update();
 	}
 	
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
+		update();
 	}
 	
 	private double x;
@@ -22,7 +24,7 @@ public class Vector {
 	public double getMag() { return mag; }
 	public void setX(double val){ x = val; update(); }
 	public void setY(double val){ y = val; update(); }
-	public void negate(){x = -x; y = -y;}
+	public void negate(){x = -x; y = -y; update(); }
 	
 	// Math Ops
 	public static Vector sub(Vector v1, Vector v2){ return new Vector(v1.x - v2.x, v1.y - v2.y); }
