@@ -16,7 +16,7 @@ public class Ball {
 	private Color color;
 	
 	public Ball() {
-		setStartLocation(2,20);
+		//setStartLocation(2,20); //needs to be set elsewhere
 		this.isMoving = false;
 		velocity = new Vector(0,1);
 		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
