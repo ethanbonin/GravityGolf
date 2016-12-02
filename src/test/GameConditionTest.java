@@ -28,6 +28,7 @@ public class GameConditionTest {
 		@Test
 		public void testPause(){
 			testGame.stopTimer();
+			testBall = new Ball();
 			assertEquals(false, testBall.isBallMoving());
 		}
 		
