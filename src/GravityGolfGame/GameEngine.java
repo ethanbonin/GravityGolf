@@ -10,13 +10,17 @@ import javax.swing.Timer;
 
 public class GameEngine extends JFrame {
 
+	private static GameEngine engine = new GameEngine();
 	public static final int CELL_SIZE = 20;
 	public static final int FPS = 20;
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
+	Timer timer = new Timer(FPS, new TimerListener());
 	
-	public GameEngine() {
+	public static GameEngine theInstance(){ return engine; }
+	
+	private GameEngine() {
 		board = board.getInstance();
 		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
 		board.setConfigFiles("src/Data/testBoard.csv");
@@ -40,11 +44,17 @@ public class GameEngine extends JFrame {
 		return;
 	}
 	
+	
+	
 	// TODO
 	public void timer(){
-		Timer timer = new Timer(FPS, new TimerListener());
 		timer.start();
 	}
+	
+	public void stopTimer(){
+		timer.stop();
+	}
+	
 	
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){

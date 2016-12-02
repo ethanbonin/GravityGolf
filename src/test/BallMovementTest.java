@@ -18,7 +18,6 @@ public class BallMovementTest {
 		
 		//This tests to see if a boardcell can contain a Triangle
 		
-		
 		Ball ball = new Ball();
 		ball.setStartLocation(0, 20);
 
