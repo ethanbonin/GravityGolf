@@ -55,6 +55,10 @@ public class GameEngine extends JFrame {
 		timer.stop();
 	}
 	
+	public void resetGame() {
+		Board.ball.reset();
+	}
+	
 	
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){

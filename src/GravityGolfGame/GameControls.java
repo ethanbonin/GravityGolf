@@ -30,7 +30,7 @@ public class GameControls extends JPanel {
 		add(stop);
 		
 		JButton reset = new JButton("Reset");
-		reset.addActionListener(e -> System.out.println("Not implemented"));
+		reset.addActionListener(e -> GameEngine.theInstance().resetGame());
 		add(reset);
 		
 		nextLevel = new JButton("Next Level");

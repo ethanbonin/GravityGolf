@@ -18,7 +18,7 @@ public class Board extends JPanel {
 	private static Board theInstance = new Board();
 	private static BoardCell[][] grid;
 	private ArrayList<Triangle> triangles;
-	private static Ball ball;
+	public static Ball ball;
 	String csvFile;
 	
 	int numCols;
@@ -160,6 +160,7 @@ public class Board extends JPanel {
 				if (cells[j].charAt(0) == 's'){
 					start = true;
 					ball.setPosition(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
+					ball.setStartLocation(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
 				} else if (cells[j].charAt(0) == 'e') {
 					end = true;
 				}
