@@ -63,7 +63,7 @@ public class Board extends JPanel {
 		
 		// TEST Triangles (Visual testing)
 			
-		triangles.add(new Triangle(getCellAt(12, 10),Type._30, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(12, 10),Type._45, Orientation.RIGHT));
 		/*
 		triangles.add(new Triangle(getCellAt(5,5), Type._30, Orientation.RIGHT));
 		triangles.add(new Triangle(getCellAt(7,5), Type._30, Orientation.UP));
@@ -107,17 +107,16 @@ public class Board extends JPanel {
 				Orientation side = Orientation.RIGHT;
 				for (Orientation o : Orientation.values()){
 					double dot = Vector.dot(velocity, o.getVector());
-					if (dot < min){
+					if (dot <= min){
 						side = o;
 					}
 				}
+				System.out.println(side);
 				
 				// Calculate new Velocity Vector
 				Vector norm = t.getNormal(side);
 				velocity.negate();
 				velocity = Vector.mult(Vector.sub(velocity, Vector.mult(Vector.mult(norm, Vector.dot(velocity, norm)), 2)), velocity.getMag());
-				System.out.println(velocity.getMag());
-				velocity = Vector.mult(norm, velocity.getMag());
 				velocity.setY(velocity.getY() * -1);
 				
 				System.out.println(velocity.toString());
