@@ -37,6 +37,9 @@ public class Ball {
 		moveVector = Vector.mult(velocity, trajectory);
 		x += moveVector.getX();
 		y += moveVector.getY();
+		
+		
+		
 	}
 	
 	
