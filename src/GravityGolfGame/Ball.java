@@ -18,9 +18,9 @@ public class Ball {
 	public Ball() {
 		setStartLocation(2,20);
 		this.isMoving = false;
-		velocity = new Vector(1,1);
+		velocity = new Vector(0,1);
 		radius = (double)(GameEngine.CELL_SIZE) / 2.0;
-		this.trajectory = new Vector(1,1);
+		this.trajectory = new Vector(0,1);
 	}
 	
 	public void setStartLocation(int startLocationX, int startLocationY) {
@@ -33,7 +33,6 @@ public class Ball {
 	public void move(){
 		//x += velocity.getX();
 		//y += velocity.getY();
-		this.isMoving = true;
 		Vector moveVector = new Vector();
 		moveVector = Vector.mult(velocity, trajectory);
 		this.x += moveVector.getX();

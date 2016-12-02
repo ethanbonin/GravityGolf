@@ -21,7 +21,7 @@ public class BallMovementTest {
 		gameEngine = GameEngine.theInstance();
 	}
 	@Test
-	public void BoardCellContains() {
+	public void BallMovesFromInitialPosition() {
 
 		Ball ball = new Ball();
 		//ball.setStartLocation(0, 20);
@@ -31,18 +31,8 @@ public class BallMovementTest {
 		assertEquals(20, ball.getY());
 		
 		ball.move();
+		//only test y movement because initial trajectory is always straight down
 		assertFalse(ball.getY() == 20);
-		assertFalse(ball.getX() == 2);
-		
-		
-		
-		//Still needs to set up more, but tests to see if It changes it x location
-		
-		
-		
-		
-		//Still needs to set up more, but tests to see if It changes it y location
-		
 		
 	}
 	
