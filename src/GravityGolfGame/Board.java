@@ -62,6 +62,7 @@ public class Board extends JPanel {
 		}
 		
 		// TEST Triangles (Visual testing)
+		triangles.add(new Triangle(getCellAt(13, 10), Type._45, Orientation.DOWN));
 		/*
 		triangles.add(new Triangle(getCellAt(5,5), Type._30, Orientation.RIGHT));
 		triangles.add(new Triangle(getCellAt(7,5), Type._30, Orientation.UP));
@@ -91,6 +92,7 @@ public class Board extends JPanel {
 		// Calculate new Position
 		Vector newPos = new Vector(ball.getX() + ball.getVelocity().getX(), ball.getY() + ball.getVelocity().getY());
 		Vector velocity = ball.getVelocity();
+		Vector newVelocity = velocity;
 		
 		// Get Bounding box
 		// This should be moved to Ball.java
@@ -108,12 +110,24 @@ public class Board extends JPanel {
 						side = o;
 					}
 				}
+				
+				System.out.println(side);
+				
+				// Calculate new Velocity Vector
+				Vector norm = t.getNormal(side);
+				velocity.negate();
+				newVelocity = Vector.sub(velocity, Vector.mult(Vector.mult(norm, Vector.dot(velocity, norm)), 2));
+				newVelocity = Vector.mult(newVelocity, velocity.getMag());
+				// Transfer to window coordinates
+				newVelocity.setX(newVelocity.getX() * -1);
+				
+				System.out.println(newVelocity.toString());
 			}
 		}
 		
 		
 		
-		
+		ball.setVelocity(newVelocity);
 		ball.move();
 		
 		repaint();

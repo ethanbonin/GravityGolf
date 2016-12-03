@@ -26,21 +26,17 @@ public class Ball {
 	}
 	
 	public void setStartLocation(int startLocationX, int startLocationY) {
-		this.x = startLocationX;
-		this.y = startLocationY;
-		this.originalX = startLocationX;
-		this.originalY = startLocationY;
+		this.y = startLocationX;
+		this.x = startLocationY;
+		this.originalY = startLocationX;
+		this.originalX = startLocationY;
 	}
 	
 	//We need to initialize velocity when the start button is pressed(1,0) or something
 	
 	public void move(){
-		//x += velocity.getX();
-		//y += velocity.getY();
-		Vector moveVector = new Vector();
-		moveVector = Vector.mult(velocity, trajectory);
-		this.x += moveVector.getX();
-		this.y += moveVector.getY();
+		x += velocity.getX();
+		y += velocity.getY();
 	}
 	
 	
