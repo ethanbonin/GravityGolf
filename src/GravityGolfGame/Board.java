@@ -28,14 +28,13 @@ public class Board extends JPanel {
 		grid = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		triangles = new ArrayList<Triangle>();
 		ball = new Ball();
-		ball.setVelocity(new Vector(0, 1));
 	}
 	
 	public static Board getInstance() {
 		return theInstance;
 	}
 
-	public static boolean isGameOver(Ball ball) {
+	public static boolean isGameOver() {
 		return false;
 	}
 	
@@ -60,7 +59,7 @@ public class Board extends JPanel {
 		triangles.add(new Triangle(getCellAt(13, 10), Type._45, Orientation.RIGHT));
 		
 		triangles.add(new Triangle(getCellAt(13, 1), Type._30, Orientation.LEFT));
-		triangles.add(new Triangle(getCellAt(5, 6), Type._60, Orientation.DOWN));
+		triangles.add(new Triangle(getCellAt(4, 6), Type._60, Orientation.DOWN));
 		
 		triangles.add(new Triangle(getCellAt(17, 10), Type._45, Orientation.UP));
 		triangles.add(new Triangle(getCellAt(17, 4), Type._45, Orientation.DOWN));

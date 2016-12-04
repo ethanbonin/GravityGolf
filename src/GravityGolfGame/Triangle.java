@@ -12,7 +12,6 @@ public class Triangle extends JComponent {
 		this.pos = pos;
 		this.type = type;
 		orientation = ori;
-		boundingBox = null;
 		
 		switch(type){
 		case _30:
@@ -46,7 +45,6 @@ public class Triangle extends JComponent {
 	private Orientation orientation;
 	private double theta;
 	private Color color;
-	private Rectangle boundingBox;
 	private int[] xPoints;
 	private int[] yPoints;
 	
@@ -68,15 +66,8 @@ public class Triangle extends JComponent {
 		xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		
-		updateBoundingBox(xPoints, yPoints);
-		
 		g.setColor(color);
 		g.fillPolygon(xPoints, yPoints, xPoints.length);
-		
-		// Bounding Box Visualization
-		
-		g.setColor(Color.RED);
-		g.drawRect((int)boundingBox.getX(), (int)boundingBox.getY(),(int) boundingBox.width, (int)boundingBox.getHeight());
 		
 		
 		return;
@@ -183,7 +174,7 @@ public class Triangle extends JComponent {
 	
 	public Vector getNormal(Orientation side) {
 
-		// Determine Side Vector
+		// Determine Side Vector. This is broken, the vertical axis is flipped.  But it works.
 		Vector sideNorm = calcSideVector(side);
 		
 		// Calculate Default Normal
@@ -260,18 +251,6 @@ public class Triangle extends JComponent {
 		}
 
 		return false;
-	}
-	
-	public Rectangle getBounds() { return boundingBox; }
-	
-	private void updateBoundingBox(int[] x, int[]y){
-		if (orientation == Orientation.RIGHT || orientation == Orientation.LEFT){
-			boundingBox = new Rectangle(x[0], y[0], x[2] - x[0], y[2] - y[0]);
-		} else if (orientation == Orientation.DOWN){
-			boundingBox = new Rectangle(x[0] , y[0], x[2] - x[0], y[1] - y[0]);
-		} else {
-			boundingBox = new Rectangle(x[1] , y[0], x[2] - x[1], y[2] - y[0]);
-		}
 	}
 	
 	private Vector calcSideVector(Orientation side){
