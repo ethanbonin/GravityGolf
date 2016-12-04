@@ -58,9 +58,13 @@ public class Board extends JPanel {
 		
 		// TEST Triangles (Visual testing)
 		triangles.add(new Triangle(getCellAt(13, 10), Type._45, Orientation.RIGHT));
+		
+		triangles.add(new Triangle(getCellAt(13, 1), Type._30, Orientation.LEFT));
+		triangles.add(new Triangle(getCellAt(5, 6), Type._60, Orientation.DOWN));
+		
 		triangles.add(new Triangle(getCellAt(17, 10), Type._45, Orientation.UP));
 		triangles.add(new Triangle(getCellAt(17, 4), Type._45, Orientation.DOWN));
-		triangles.add(new Triangle(getCellAt(20, 4), Type._45, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(22, 4), Type._45, Orientation.RIGHT));
 		/*
 		triangles.add(new Triangle(getCellAt(5,5), Type._30, Orientation.RIGHT));
 		triangles.add(new Triangle(getCellAt(7,5), Type._30, Orientation.UP));
@@ -97,7 +101,7 @@ public class Board extends JPanel {
 		Rectangle box = new Rectangle((int)(newPos.getX() + ball.getRadius()) - 1, (int)(newPos.getY() + ball.getRadius()) - 1, 2, 2);
 		
 		for (Triangle t : triangles){
-			if (t.intersects(newPos, velocity)){
+			if (t.intersects(newPos)){
 			//if (box.intersects(t.getBounds())){
 				// Determine which side the ball is hitting
 				velocity.negate();
@@ -106,15 +110,13 @@ public class Board extends JPanel {
 				Orientation side = Orientation.RIGHT;
 				
 				for (Orientation o : Orientation.values()){
+					
 					double dot = Math.toDegrees(Math.acos(Vector.dot(velocity, o.getVector())));
-
 					if (dot < min){
 						side = o;
 						min = dot;
 					}
 				}
-				
-				System.out.println(side);
 				
 				// Calculate new Velocity Vector
 				Vector norm = t.getNormal(side);
@@ -124,14 +126,12 @@ public class Board extends JPanel {
 				newVelocity = Vector.mult(newVelocity, velocity.getMag());
 				
 				// Transfer to window coordinates
-				if (side == Orientation.LEFT){
+				if (side == Orientation.LEFT || side == Orientation.RIGHT){
 					newVelocity.setY(newVelocity.getY() * -1);
 				}
 				else {
 					newVelocity.setX(newVelocity.getX() * -1);
 				}
-				
-				System.out.println(newVelocity.toString());
 			}
 		}
 		

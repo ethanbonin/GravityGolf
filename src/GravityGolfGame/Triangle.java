@@ -221,36 +221,17 @@ public class Triangle extends JComponent {
 		}
 	}
 	
-	public boolean intersects(Vector a, Vector b){
-		/*
-		double det = ((yPoints[1] - yPoints[2]) * (xPoints[0] - xPoints[2])
-				+ (xPoints[2] - xPoints[1]) * (yPoints[0] - yPoints[2]));
+	public boolean intersects(Vector a){
 		
-		if (det == 0){
-			return true;
-		}
+		// Change points in triangle and point a to barycentric coordinates
+		// If the value is above 0 then the point is inside the triangle.
 		
-		double alpha = ((yPoints[1] - yPoints[2]) * (a.getX() - xPoints[2])
-				+ (xPoints[2] - xPoints[1]) * (a.getY() - yPoints[2]))
-				/ det;
-		
-		double beta = ((yPoints[2] - yPoints[0]) * (a.getX() - xPoints[2])
-				+ (xPoints[0] - xPoints[2]) * (a.getY() - yPoints[2]))
-				/ det;
-		
-		double gamma = 1.0 - alpha - beta;
-		
-		if (alpha > 0 && beta > 0 && gamma > 0){
-			System.out.println(a);
-			System.out.println("a: " + alpha + " b: " + beta + " g: " + gamma + "\n\n\n\n");
-			return true;
-		}
-		*/
 		// Compute vectors
 		Vector v0 = Vector.sub(new Vector(xPoints[2], yPoints[2]), new Vector(xPoints[0], yPoints[0]));
 		Vector v1 = Vector.sub(new Vector(xPoints[1], yPoints[1]), new Vector(xPoints[0], yPoints[0]));
 		Vector v2 = Vector.sub(a, new Vector(xPoints[0], yPoints[0]));
 		
+		// Avoid co-linear evaluation
 		if (orientation == Orientation.UP){
 			v0 = Vector.sub(new Vector(xPoints[2], yPoints[2]), new Vector(xPoints[1], yPoints[1]));
 			v1 = Vector.sub(new Vector(xPoints[0], yPoints[0]), new Vector(xPoints[1], yPoints[1]));
@@ -271,62 +252,13 @@ public class Triangle extends JComponent {
 
 		// Check if point is in triangle
 		if ((u >= 0) && (v >= 0) && (u + v < 1)) {
+			/*
 			System.out.println(a);
 			System.out.println("a: " + u + " b: " + v + " g: " + invDenom + "\n\n\n");
+			*/
 			return true;
 		}
 
-		
-		
-		
-		
-//		// Line in Question. of the form lineX x + lineY y = LineC
-//		double b1 = b.getX() - a.getX();
-//		double a1 = b.getY() - a.getY();
-//		double c1 = a1 * a.getX() + b1 * a.getY();
-//		
-//		// Lines of Triangle
-//		/*
-//		double triX = xPoints[1] - xPoints[0];
-//		double triY = yPoints[1] - yPoints[0];
-//		double triC = triX * xPoints[0] + triY * yPoints[0];
-//		*/
-//		
-//		for(int i = 0; i < xPoints.length; i++){
-//			for (int j = 0; j < xPoints.length; j++){
-//				if (i == j){
-//					continue;
-//				}
-//				
-//				double b2 = xPoints[i] - xPoints[j];
-//				double a2 = yPoints[i] - yPoints[j];
-//				double c2 = a2 * xPoints[i] + b2 * yPoints[j];
-//				
-//				double det = a1 * b2 - a2 * b1;
-//				if (det == 0) {
-//					continue;
-//				} else {
-//					
-//					double x = (b2 * c1 - b1 * c2) / det;
-//					double y = (a1 * c2 - a2 * c2) / det;
-//					
-//					if (Math.min(a.getY(), b.getY()) < y && y < Math.max(a.getY(), b.getY())){
-//						System.out.println("Intersect: (" + x + ", " + y + ")");
-//						if (Math.min(a.getX(), b.getX()) < x && x < Math.max(a.getX(), b.getX())){
-//							return true;
-//						}
-//						else {
-//							continue;
-//						}
-//					}
-//					else {
-//						continue;
-//					}
-//					
-//				}
-//			}
-//		}
-		
 		return false;
 	}
 	
