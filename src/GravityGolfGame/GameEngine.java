@@ -56,7 +56,8 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void resetGame() {
-		Board.ball.reset();
+		timer.stop();
+		board.reset();
 	}
 	
 	

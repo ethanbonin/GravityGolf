@@ -18,7 +18,7 @@ public class Board extends JPanel {
 	private static Board theInstance = new Board();
 	private static BoardCell[][] grid;
 	private ArrayList<Triangle> triangles;
-	public static Ball ball;
+	private Ball ball;
 	String csvFile;
 	
 	int numCols;
@@ -168,6 +168,12 @@ public class Board extends JPanel {
 		// Draw Player Last
 		ball.draw(g);
 		
+	}
+	
+	public void reset(){
+		ball.reset();
+		ball.setVelocity(new Vector(0,1));
+		repaint();
 	}
 	
 	private void loadBoardConfig() throws IOException {
