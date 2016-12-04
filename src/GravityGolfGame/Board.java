@@ -36,12 +36,7 @@ public class Board extends JPanel {
 	}
 
 	public static boolean isGameOver(Ball ball) {
-		if (grid[ball.getX()][ball.getY()].getInitial() == 'e') {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return false;
 	}
 	
 	public static void pauseGame() {
@@ -62,7 +57,10 @@ public class Board extends JPanel {
 		}
 		
 		// TEST Triangles (Visual testing)
-		triangles.add(new Triangle(getCellAt(13, 10), Type._45, Orientation.DOWN));
+		triangles.add(new Triangle(getCellAt(13, 10), Type._45, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(17, 10), Type._45, Orientation.UP));
+		triangles.add(new Triangle(getCellAt(17, 4), Type._45, Orientation.DOWN));
+		triangles.add(new Triangle(getCellAt(20, 4), Type._45, Orientation.RIGHT));
 		/*
 		triangles.add(new Triangle(getCellAt(5,5), Type._30, Orientation.RIGHT));
 		triangles.add(new Triangle(getCellAt(7,5), Type._30, Orientation.UP));
@@ -90,24 +88,29 @@ public class Board extends JPanel {
 		// Also check if the ball is in the goal and handle it
 		
 		// Calculate new Position
-		Vector newPos = new Vector(ball.getX() + ball.getVelocity().getX(), ball.getY() + ball.getVelocity().getY());
+		Vector newPos = new Vector(ball.getX() + ball.getVelocity().getX() + ball.getRadius(), ball.getY() + ball.getVelocity().getY() + ball.getRadius());
 		Vector velocity = ball.getVelocity();
 		Vector newVelocity = velocity;
 		
 		// Get Bounding box
 		// This should be moved to Ball.java
-		Rectangle box = new Rectangle((int)newPos.getX(), (int)newPos.getY(), (int)ball.getRadius() * 2, (int)ball.getRadius() * 2);
+		Rectangle box = new Rectangle((int)(newPos.getX() + ball.getRadius()) - 1, (int)(newPos.getY() + ball.getRadius()) - 1, 2, 2);
 		
 		for (Triangle t : triangles){
-			if (box.intersects(t.getBounds())){
+			if (t.intersects(newPos, velocity)){
+			//if (box.intersects(t.getBounds())){
 				// Determine which side the ball is hitting
 				velocity.negate();
-				double min = Vector.dot(velocity, Orientation.RIGHT.getVector());
+				
+				double min = Math.toDegrees(Math.acos(Vector.dot(velocity, Orientation.RIGHT.getVector())));
 				Orientation side = Orientation.RIGHT;
+				
 				for (Orientation o : Orientation.values()){
-					double dot = Vector.dot(velocity, o.getVector());
-					if (dot <= min){
+					double dot = Math.toDegrees(Math.acos(Vector.dot(velocity, o.getVector())));
+
+					if (dot < min){
 						side = o;
+						min = dot;
 					}
 				}
 				
@@ -116,16 +119,21 @@ public class Board extends JPanel {
 				// Calculate new Velocity Vector
 				Vector norm = t.getNormal(side);
 				velocity.negate();
+				
 				newVelocity = Vector.sub(velocity, Vector.mult(Vector.mult(norm, Vector.dot(velocity, norm)), 2));
 				newVelocity = Vector.mult(newVelocity, velocity.getMag());
+				
 				// Transfer to window coordinates
-				newVelocity.setX(newVelocity.getX() * -1);
+				if (side == Orientation.LEFT){
+					newVelocity.setY(newVelocity.getY() * -1);
+				}
+				else {
+					newVelocity.setX(newVelocity.getX() * -1);
+				}
 				
 				System.out.println(newVelocity.toString());
 			}
 		}
-		
-		
 		
 		ball.setVelocity(newVelocity);
 		ball.move();

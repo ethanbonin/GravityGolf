@@ -109,7 +109,7 @@ public class BoardCell {
 		return x;
 	}
 	
-	public int getYUp(){
+	public int getY(){
 		return y;
 	}
 	

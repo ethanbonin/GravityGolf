@@ -7,8 +7,8 @@ public class Ball {
 	
 	public static double VELOCITY_CONSTANT = 1.0;
 	public static double ACCELERATION_CONSTANT = 1.0;
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 	protected int originalX;
 	protected int originalY;
 	protected Vector velocity;
@@ -55,13 +55,13 @@ public class Ball {
 	}
 	public void setVelocity(Vector v){ velocity = v; }
 	public Vector getVelocity(){ return velocity; }
-	public int getX(){ return x; }
-	public int getY(){ return y; }
+	public double getX(){ return x; }
+	public double getY(){ return y; }
 	public double getRadius(){ return radius; }
 	
 	public void draw(Graphics g){
 		g.setColor(Color.RED);
-		g.fillOval(x, y, (int)radius * 2, (int)radius * 2);
+		g.fillOval((int)x, (int)y, (int)radius * 2, (int)radius * 2);
 		return;
 	}
 
