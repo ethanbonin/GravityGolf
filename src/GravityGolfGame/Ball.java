@@ -37,7 +37,7 @@ public class Ball {
 	public void setEndLocation(int endLocationY, int endLocationX) {
 
 		this.endX = endLocationX;
-		this.endY = endLocationY - 1;
+		this.endY = endLocationY; // - 1;
 	}
 
 	// We need to initialize velocity when the start button is pressed(1,0) or
@@ -69,6 +69,14 @@ public class Ball {
 	public double getY() {
 		return y;
 	}
+	
+	public double getEndX() {
+		return endX;
+	}
+	
+	public double getEndY() {
+		return endY;
+	}
 
 	public double getRadius() {
 		return radius;
@@ -83,7 +91,7 @@ public class Ball {
 	public void reset() {
 		this.x = this.originalX;
 		this.y = this.originalY;
-		
+
 	}
 
 	public boolean isBallMoving() {
@@ -91,6 +99,9 @@ public class Ball {
 	}
 
 	public boolean endSquare() {
+
+		System.out.println("X: " + this.x + " vs " + this.endX);
+		System.out.println("Y:" + this.y + " vs " + this.endY);
 
 		if (this.x == this.endX && this.y == this.endY) {
 			return true;

@@ -85,17 +85,19 @@ public class Board extends JPanel {
 				newVelocity = calcTriangleCollision(velocity, t);
 			}
 		}
-		// Check for wall collision detection
-//		for (BoardCell C: BoardCell.wallCells) {
-//			
-//		}
-		
-		
-		
+
 		ball.setVelocity(newVelocity);
 		ball.move();
-		boolean name = ball.endSquare();
+		//boolean name = ball.endSquare();
 
+	
+		
+		Rectangle ballBox = new Rectangle((int)ball.getX(), (int)ball.getY(), (int)ball.getX() + (int)ball.getRadius(), (int)ball.getY() + (int)ball.getRadius());
+		Rectangle winBox = new Rectangle((int)ball.getEndX()*2, (int)ball.getEndY()*2, (int)ball.getEndX() + GameEngine.CELL_SIZE, (int)ball.getEndY()+GameEngine.CELL_SIZE);
+		
+		boolean name = ballBox.intersects(winBox);
+		
+		
 		if (name == true) {
 			isGameOver(name);
 		}
@@ -226,6 +228,7 @@ public class Board extends JPanel {
 	public BoardCell getCellAt(int i, int j) {
 		return grid[i][j];
 	}
+	
 
 	public void addTriangle(BoardCell coord) {
 		triangles.add(new Triangle(coord, Type._45, TrianglePane.getOrientation()));

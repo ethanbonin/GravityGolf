@@ -12,7 +12,6 @@ import GravityGolfGame.Triangle.Type;
 public class MouseClicked implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
-		Point i = e.getPoint();
 		int x = (int) e.getX() / 20 + 1;
 		int y = (int) e.getY() / 20 + 1;
 

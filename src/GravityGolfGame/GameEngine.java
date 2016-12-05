@@ -29,11 +29,7 @@ public class GameEngine extends JFrame {
 	
 	public GameEngine() {
 		board = board.getInstance();
-//		levels.add("src/Data/a.csv");
-//		levels.add("src/Data/b.csv");
-//		levels.add("src/Data/c.csv");
-//		board.setConfigFiles(levels.get(levelCount));
-		board.setConfigFiles("src/Data/b.csv");
+		board.setConfigFiles("src/Data/a.csv");
 		board.load();
 		
 		triUI = new TrianglePane();
@@ -78,6 +74,12 @@ public class GameEngine extends JFrame {
 			// pop up a dialogue that confirms computer win
 			JOptionPane.showMessageDialog(frame, "Congrats! You won!",
 					"Level Over", gameWon.INFORMATION_MESSAGE);
+		}
+		
+		if (levelCount == 0 && board.GameOver() == true){
+			levelCount = 1;
+			board.setConfigFiles("src/Data/b.csv");
+			board.load();
 		}
 	}
 	
