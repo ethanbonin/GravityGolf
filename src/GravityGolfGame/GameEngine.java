@@ -17,8 +17,8 @@ public class GameEngine extends JFrame {
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
-	private Quiz quizGame;
 	Timer timer = new Timer(FPS, new TimerListener());
+	private String[] levels;
 	
 	public static GameEngine theInstance(){ return engine; }
 	

@@ -101,8 +101,13 @@ public class Board extends JPanel {
 			}
 		}
 		
-		
 		// Check for wall collision detection
+//		for (BoardCell C: BoardCell.wallCells) {
+//			
+//		}
+		
+		
+		
 		ball.setVelocity(newVelocity);
 		ball.move();
 		
