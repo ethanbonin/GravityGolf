@@ -257,5 +257,9 @@ public class Board extends JPanel {
 	public BoardCell getCellAt(int i, int j) {
 		return grid[i][j];
 	}
-
+	
+	public void addTriangle (Triangle triangle) {
+		triangles.add(triangle);
+		repaint();
+	}
 }

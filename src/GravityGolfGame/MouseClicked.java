@@ -7,12 +7,15 @@ import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import GravityGolfGame.Triangle.Type;
 
 public class MouseClicked implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		Point i = e.getPoint();
-		System.out.println(e.getX()/20 + " " + e.getY()/20);
+		int x = (int) e.getX()/20 + 1;
+		int y = (int) e.getY()/20 + 1;
+		Board.getInstance().addTriangle(new Triangle(Board.getInstance().getCellAt(x, y), Type._45, Orientation.RIGHT));
 	}
 
 	@Override
