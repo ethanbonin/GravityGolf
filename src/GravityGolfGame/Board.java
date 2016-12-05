@@ -36,6 +36,7 @@ public class Board extends JPanel {
 	public static boolean isGameOver() {
 		return false;
 	}
+	
 
 	public void setConfigFiles(String file) {
 		csvFile = file;
@@ -99,7 +100,6 @@ public class Board extends JPanel {
 				newVelocity = calcTriangleCollision(velocity, t);
 			}
 		}
-		
 		
 		
 		// Check for wall collision detection

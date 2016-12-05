@@ -7,6 +7,7 @@ public class BoardCell {
 	
 	char boardCellInitial;
 	private boolean isEnd;
+	private boolean isWall;
 	private int x;
 	private int y;
 	
@@ -22,6 +23,9 @@ public class BoardCell {
 		if (initial == 'e'){
 			isEnd = true;
 		}
+		if (initial == 'w') {
+			isWall = true;
+		}
 	}
 	
 	
@@ -30,6 +34,9 @@ public class BoardCell {
 		g.setColor(Color.GRAY);
 		if (isEnd){
 			g.setColor(Color.GREEN);
+		}
+		if (isWall) {
+			g.setColor(Color.YELLOW);
 		}
 		
 		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
@@ -58,6 +65,4 @@ public class BoardCell {
 	public int getY(){
 		return y;
 	}
-	
-	
 }
