@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import GravityGolfGame.Triangle.Type;
+import GravityGolfGame.MouseClicked;
 
 public class Board extends JPanel {
 
@@ -23,6 +24,7 @@ public class Board extends JPanel {
 	private ArrayList<Triangle> triangles;
 	private Ball ball;
 	String csvFile;
+	private MouseClicked click;
 
 	int numCols;
 	int numRows;
@@ -105,7 +107,7 @@ public class Board extends JPanel {
 		// Yes, handle collision then move ball
 		// No, move ball
 		// Also check if the ball is in the goal and handle it
-
+		click = new MouseClicked();
 		// Calculate new Position
 		Vector newPos = new Vector(ball.getX() + ball.getVelocity().getX() + ball.getRadius(),
 				ball.getY() + ball.getVelocity().getY() + ball.getRadius());
@@ -127,6 +129,8 @@ public class Board extends JPanel {
 		if (name == true) {
 			isGameOver(name);
 		}
+
+		addMouseListener(click);
 
 		repaint();
 		return;
@@ -246,31 +250,6 @@ public class Board extends JPanel {
 
 	public BoardCell getCellAt(int i, int j) {
 		return grid[i][j];
-	}
-
-	private class MouseClickerPanel implements MouseListener {
-		public void mouseClicked(MouseEvent e) {
-		}
-
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		public void mouseReleased(MouseEvent e) {
-		}
-
-		public void mousePressed(MouseEvent e) {
-			Point i = e.getPoint();
-			
-			BoardCell cell = getCellAt((int) i.getX()/20, (int) i.getY()/20);
-			
-			triangles.add(new Triangle(cell, Type._45, Orientation.RIGHT));
-			
-
-		}
-
 	}
 
 }
