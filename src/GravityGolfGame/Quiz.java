@@ -1,5 +1,8 @@
 package GravityGolfGame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,19 +13,21 @@ public class Quiz extends JPanel{
 	
 	public Quiz() {
 		JButton quiz = new JButton("Quiz");
-		quiz.addActionListener(e -> popUp());
+		quiz.addActionListener(new ButtonListener());
 		add(quiz);
 	}
 	
-	private void popUp(){
+	private class ButtonListener implements ActionListener {
 		
-		setSize(300, 100);
-		
-		
-		//setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		//setBorder(new EmptyBorder(10, 5, 5, 5));
+		public void actionPerformed(ActionEvent e) {
+			
+			
+		}
 	}
 	
+	private JPanel questions() {
+		return null;
+	}
 	
 	//Testing
 	public static void main(String[] args) {
