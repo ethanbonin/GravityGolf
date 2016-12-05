@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
@@ -44,9 +45,6 @@ public class GameEngine extends JFrame {
 		return;
 	}
 	
-	
-	
-	// TODO
 	public void timer(){
 		timer.start();
 	}

@@ -36,10 +36,6 @@ public class Board extends JPanel {
 	public static boolean isGameOver() {
 		return false;
 	}
-	
-	public static void pauseGame() {
-		
-	}
 
 	public void setConfigFiles(String file) {
 		csvFile = file;
