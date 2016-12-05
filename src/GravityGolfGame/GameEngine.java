@@ -58,15 +58,6 @@ public class GameEngine extends JFrame {
 		board.reset();
 	}
 	
-	public void quizGame() {
-		class QuizPanel extends JPanel{
-			void quizPane() { 
-				setSize(300, 100);
-				setVisible(true);
-			}
-		}
-	}
-	
 	
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
