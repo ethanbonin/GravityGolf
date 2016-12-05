@@ -60,10 +60,17 @@ public class GameEngine extends JFrame {
 		board.reset();
 	}
 	
+	public void CheckGameOver() {
+		if (board.GameOver()){
+			timer.stop();
+		}
+	}
+	
 	
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			board.update();
+			CheckGameOver();
 		}
 	}
 	

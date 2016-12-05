@@ -16,6 +16,7 @@ public class Board extends JPanel {
 	private static final int MAX_BOARD_SIZE = 100;
 	private static Board theInstance = new Board();
 	private static BoardCell[][] grid;
+	boolean endGame = false;
 	private ArrayList<Triangle> triangles;
 	private Ball ball;
 	String csvFile;
@@ -33,9 +34,15 @@ public class Board extends JPanel {
 		return theInstance;
 	}
 
-	public static boolean isGameOver() {
-		return false;
+	public boolean isGameOver(boolean truth) {
+		this.endGame = truth;
+		return endGame;
 	}
+	
+	public boolean GameOver() {
+		return endGame;
+	}
+	
 
 	public void setConfigFiles(String file) {
 		csvFile = file;
@@ -102,12 +109,14 @@ public class Board extends JPanel {
 				
 		
 		
-		
 		// Check for wall collision detection
 		ball.setVelocity(newVelocity);
 		ball.move();
 		boolean name = ball.endSquare();
 		
+		if (name == true) {
+			isGameOver(name);
+		}
 		
 		
 		repaint();
@@ -192,6 +201,7 @@ public class Board extends JPanel {
 	public void reset(){
 		ball.reset();
 		ball.setVelocity(new Vector(0,1));
+		endGame = false;
 		repaint();
 	}
 	
