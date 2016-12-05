@@ -32,9 +32,4 @@ public class GameConditionTest {
 			assertEquals(false, testBall.isBallMoving());
 		}
 		
-		@Test
-		public void testWin(){
-			assertEquals(true, Board.getInstance().isGameOver());
-		}
-		
 }
