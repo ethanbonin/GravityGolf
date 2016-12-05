@@ -14,7 +14,7 @@ public class GameConditionTest {
 	
 	private static Ball testBall = new Ball();
 	private static Board board;
-	private static BoardCell testCell = new BoardCell(1, 1, false, true);
+	private static BoardCell testCell = new BoardCell(1, 1);
 	private static GameEngine testGame = new GameEngine();
 	
 	

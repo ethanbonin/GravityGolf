@@ -77,6 +77,7 @@ public class Board extends JPanel {
 		triangles.add(new Triangle(getCellAt(9,9), Type._60, Orientation.LEFT));
 		triangles.add(new Triangle(getCellAt(11,9), Type._60, Orientation.DOWN));
 		*/
+
 	}
 	
 	public void update(){
@@ -95,9 +96,7 @@ public class Board extends JPanel {
 		// Check for triangle collision detection
 		for (Triangle t : triangles){
 			if (t.intersects(newPos)){
-			//if (box.intersects(t.getBounds())){
-				
-				newVelocity = calcReflection(velocity, t);
+				newVelocity = calcTriangleCollision(velocity, t);
 			}
 		}
 		
@@ -111,36 +110,47 @@ public class Board extends JPanel {
 		return;
 	}
 	
-	private Vector calcReflection(Vector v, Triangle t){
+	private Vector calcTriangleCollision(Vector v, Triangle t) {
 		// Determine which side the ball is hitting
 		v.negate();
-		
+
 		double min = Math.toDegrees(Math.acos(Vector.dot(v, Orientation.RIGHT.getVector())));
 		Orientation side = Orientation.RIGHT;
-		
-		for (Orientation o : Orientation.values()){
-			
+
+		for (Orientation o : Orientation.values()) {
+
 			double dot = Math.toDegrees(Math.acos(Vector.dot(v, o.getVector())));
-			if (dot < min){
+			if (dot < min) {
 				side = o;
 				min = dot;
 			}
 		}
-		
+
 		// Calculate new Velocity Vector
 		Vector norm = t.getNormal(side);
 		v.negate();
-		
-		Vector newVelocity = Vector.sub(v, Vector.mult(Vector.mult(norm, Vector.dot(v, norm)), 2));
-		newVelocity = Vector.mult(newVelocity, v.getMag());
+
+		Vector newVelocity = calcReflection(v, norm, side);
 		
 		// Transfer to window coordinates
-		if (side == Orientation.LEFT || side == Orientation.RIGHT){
+		if (side == Orientation.LEFT || side == Orientation.RIGHT) {
 			newVelocity.setY(newVelocity.getY() * -1);
-		}
-		else {
+		} else {
+			if(t.getOrientation() == Orientation.DOWN || t.getOrientation() == Orientation.UP){
+				if(t.getOrientation() != side){
+					newVelocity.setX(newVelocity.getX() * -1);
+				}
+			}
 			newVelocity.setX(newVelocity.getX() * -1);
 		}
+
+		return newVelocity;
+	}
+	
+	private Vector calcReflection(Vector v, Vector normal, Orientation side){
+		
+		Vector newVelocity = Vector.sub(v, Vector.mult(Vector.mult(normal, Vector.dot(v, normal)), 2));
+		newVelocity = Vector.mult(newVelocity, v.getMag());
 		
 		return newVelocity;
 	}
@@ -169,6 +179,7 @@ public class Board extends JPanel {
 			t.draw(g);
 		}
 		
+		
 		// Draw Player Last
 		ball.draw(g);
 		
@@ -195,18 +206,13 @@ public class Board extends JPanel {
 			
 			for (int j = 0; j < cells.length; j++) {
 				
-				boolean start = false;
-				boolean end = false;
+				grid[i][j] = new BoardCell(i, j, cells[j].charAt(0));
 				
 				if (cells[j].charAt(0) == 's'){
-					start = true;
 					ball.setPosition(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
 					ball.setStartLocation(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
-				} else if (cells[j].charAt(0) == 'e') {
-					end = true;
-				}
-
-				grid[i][j] = new BoardCell(i, j, start, end, cells[j].charAt(0));
+				} 
+				
 			}
 			i++;
 		}

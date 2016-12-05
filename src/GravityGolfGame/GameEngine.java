@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
@@ -16,6 +17,7 @@ public class GameEngine extends JFrame {
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
+	private Quiz quizGame;
 	Timer timer = new Timer(FPS, new TimerListener());
 	
 	public static GameEngine theInstance(){ return engine; }
@@ -40,13 +42,11 @@ public class GameEngine extends JFrame {
 		add(controlUI, BorderLayout.PAGE_START);
 		add(board, BorderLayout.CENTER);
 		add(triUI, BorderLayout.LINE_END);
+		//add(quizGame, BorderLayout.SOUTH);
 		
 		return;
 	}
 	
-	
-	
-	// TODO
 	public void timer(){
 		timer.start();
 	}

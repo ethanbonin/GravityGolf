@@ -6,7 +6,6 @@ import java.awt.Graphics;
 public class BoardCell {
 	
 	char boardCellInitial;
-	private boolean win;
 	private boolean isEnd;
 	private int x;
 	private int y;
@@ -17,17 +16,11 @@ public class BoardCell {
 		this.y = y;
 	}
 	
-	public BoardCell(int x, int y, boolean isStart, boolean isEnd){
-		this.x = x;
-		this.y = y;
-		this.isEnd = isEnd;
-	}
-	
-	public BoardCell(int x, int y, boolean isStart, boolean isEnd, char initial){
-		this(x, y, isStart, isEnd);
+	public BoardCell(int x, int y, char initial){
+		this(x, y);
 		boardCellInitial = initial;
 		if (initial == 'e'){
-			win = true;
+			isEnd = true;
 		}
 	}
 	
@@ -36,21 +29,16 @@ public class BoardCell {
 		
 		g.setColor(Color.GRAY);
 		if (isEnd){
-			g.setColor(Color.MAGENTA);
+			g.setColor(Color.GREEN);
 		}
 		
 		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		
-		if (boardCellInitial == 'S'){
-			g.setColor(Color.GREEN);
-			g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-		}
-		
 		// Draws outlines as opposed to solid cell
-		/**/
+		
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-		/**/
+		
 		return;
 	}
 
@@ -60,7 +48,7 @@ public class BoardCell {
 	
 	//This returns the BoardCell to have the winning Condition. 
 	public boolean containsWin() {
-		return this.win;
+		return this.isEnd;
 	}
 	
 	public int getX(){
