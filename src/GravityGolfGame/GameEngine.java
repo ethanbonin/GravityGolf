@@ -62,6 +62,7 @@ public class GameEngine extends JFrame {
 		class QuizPanel extends JPanel{
 			void quizPane() { 
 				setSize(300, 100);
+				setVisible(true);
 			}
 		}
 	}
