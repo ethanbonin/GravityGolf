@@ -65,6 +65,8 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void CheckGameOver() {
+		
+		
 		if (board.GameOver()){
 			timer.stop();
 			
@@ -73,26 +75,33 @@ public class GameEngine extends JFrame {
 			
 			// pop up a dialogue that confirms computer win
 			JOptionPane.showMessageDialog(frame, "Congrats! You won!",
-					"Level Over", gameWon.INFORMATION_MESSAGE);
+					"Level Over", gameWon.INFORMATION_MESSAGE);	
 		}
 		
 		if (levelCount == 0 && board.GameOver() == true){
-			levelCount = 1;
+			levelCount++;
+			board.reset();
 			board.setConfigFiles("src/Data/b.csv");
 			board.load();
 		}
-	}
-	
-	public void nextLevel() {
+		if (levelCount == 1 && board.GameOver() == true) {
+			levelCount++;
+			board.reset();
+			board.setConfigFiles("src/Data/c.csv");
+			board.load();
+		}
 		
-		if (levelCount > 3) {
-			System.out.println("Congradulations! You won!");
+		if (levelCount == 2 && board.GameOver() == true) {
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			JOptionPane.showMessageDialog(frame, "Congrats! You won the whole Game!!!",
+					"Game Over", gameWon.INFORMATION_MESSAGE);
 			System.exit(0);
 		}
 		
-		//levelCount++;
-		//Need to some how reset config file
+		
 	}
+	
 	
 	
 	private class TimerListener implements ActionListener{

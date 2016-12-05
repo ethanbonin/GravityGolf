@@ -59,7 +59,7 @@ public class Board extends JPanel {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
-		
+
 		addMouseListener(click);
 	}
 
@@ -88,21 +88,20 @@ public class Board extends JPanel {
 
 		ball.setVelocity(newVelocity);
 		ball.move();
-		//boolean name = ball.endSquare();
 
-	
+		Rectangle ballBox = new Rectangle((int) ball.getX(), (int) ball.getY(),
+				(int) ball.getX() + (int) ball.getRadius(), 
+				(int) ball.getY() + (int) ball.getRadius());
 		
-		Rectangle ballBox = new Rectangle((int)ball.getX(), (int)ball.getY(), (int)ball.getX() + (int)ball.getRadius(), (int)ball.getY() + (int)ball.getRadius());
-		Rectangle winBox = new Rectangle((int)ball.getEndX()*2, (int)ball.getEndY()*2, (int)ball.getEndX() + GameEngine.CELL_SIZE, (int)ball.getEndY()+GameEngine.CELL_SIZE);
-		
+		Rectangle winBox = new Rectangle((int) ball.getEndX() * 2, (int) ball.getEndY() * 2,
+				(int) ball.getEndX() + GameEngine.CELL_SIZE, 
+				(int) ball.getEndY() + GameEngine.CELL_SIZE);
+
 		boolean name = ballBox.intersects(winBox);
-		
-		
+
 		if (name == true) {
 			isGameOver(name);
 		}
-
-		removeMouseListener(click);
 
 		repaint();
 		return;
@@ -156,7 +155,7 @@ public class Board extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		
 		int x = 0;
 		int y = 0;
 
@@ -176,10 +175,7 @@ public class Board extends JPanel {
 		for (Triangle t : triangles) {
 			t.draw(g);
 		}
-		
-		for (int i = 0; i < triangles.size(); i++){
-			triangles.get(i).draw(g);
-		}
+
 
 		// Draw Player Last
 		ball.draw(g);
@@ -228,7 +224,6 @@ public class Board extends JPanel {
 	public BoardCell getCellAt(int i, int j) {
 		return grid[i][j];
 	}
-	
 
 	public void addTriangle(BoardCell coord) {
 		triangles.add(new Triangle(coord, Type._45, TrianglePane.getOrientation()));
