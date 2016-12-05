@@ -35,7 +35,7 @@ public class TrianglePane extends JPanel{
 	private void createTriangleButtons(){
 		
 		add(new JLabel(thirty.getType().toString() + " Degrees"));
-		add(thirty);
+		//add(thirty);
 		
 		add(new JLabel(fortyFive.getType().toString() + " Degrees"));
 		add(fortyFive);
@@ -86,8 +86,10 @@ public class TrianglePane extends JPanel{
 	// TESTING ONLY
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.setSize(150, 400);
-		frame.add(new TrianglePane());
+		//frame.setSize(150, 400);
+		frame.setSize(600, 300);
+		//frame.add(new TrianglePane());
+		frame.add(new QuizPanel());
 		frame.setVisible(true);
 
 	}
