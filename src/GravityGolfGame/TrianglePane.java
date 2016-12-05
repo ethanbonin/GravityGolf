@@ -82,14 +82,13 @@ public class TrianglePane extends JPanel{
 		repaint();
 		return;
 	}
-
+	
 	// TESTING ONLY
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setSize(150, 400);
 		frame.add(new TrianglePane());
 		frame.setVisible(true);
-
 	}
 
 }

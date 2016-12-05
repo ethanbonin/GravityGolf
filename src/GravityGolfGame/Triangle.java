@@ -40,7 +40,7 @@ public class Triangle extends JComponent {
 	
 	private BoardCell pos;
 	private Type type;
-	private Orientation orientation;
+	private static Orientation orientation;
 	private double theta;
 	private Color color;
 	private int[] xPoints;
@@ -166,7 +166,7 @@ public class Triangle extends JComponent {
 	public BoardCell getPosition() { return pos; }
 	
 	public void setOrientaion(Orientation o) { orientation = o; }
-	public Orientation getOrientation() { return orientation; }
+	public static Orientation getOrientation() { return orientation; }
 	
 	public Type getType(){ return type; }
 	

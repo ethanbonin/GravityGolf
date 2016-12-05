@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -65,6 +66,13 @@ public class GameEngine extends JFrame {
 	public void CheckGameOver() {
 		if (board.GameOver()){
 			timer.stop();
+			
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			
+			// pop up a dialogue that confirms computer win
+			JOptionPane.showMessageDialog(frame, "Congrats! You won!",
+					"Level Over", gameWon.INFORMATION_MESSAGE);
 		}
 	}
 	

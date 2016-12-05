@@ -15,7 +15,15 @@ public class MouseClicked implements MouseListener {
 		Point i = e.getPoint();
 		int x = (int) e.getX()/20 + 1;
 		int y = (int) e.getY()/20 + 1;
-		Board.getInstance().addTriangle(new Triangle(Board.getInstance().getCellAt(x, y), Type._45, Orientation.RIGHT));
+		
+		if (x == 25 || x == 26) {
+			x = 24;
+		}
+		
+		
+		Orientation orientation = Triangle.getOrientation();
+		
+		Board.getInstance().addTriangle(new Triangle(Board.getInstance().getCellAt(x, y), Type._45, orientation));
 	}
 
 	@Override
