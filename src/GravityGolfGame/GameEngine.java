@@ -3,8 +3,13 @@ package GravityGolfGame;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
@@ -12,18 +17,19 @@ public class GameEngine extends JFrame {
 
 	private static GameEngine engine = new GameEngine();
 	public static final int CELL_SIZE = 20;
-	public static final int FPS = 20;
+	public static final int FPS = 17;
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
 	Timer timer = new Timer(FPS, new TimerListener());
+	private ArrayList<String> levels = new ArrayList<String>();
+	private int levelCount = 0;
 	
 	public static GameEngine theInstance(){ return engine; }
 	
 	public GameEngine() {
 		board = board.getInstance();
-		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
-		board.setConfigFiles("src/Data/testBoard.csv");
+		board.setConfigFiles("src/Data/a.csv");
 		board.load();
 		
 		triUI = new TrianglePane();
@@ -40,13 +46,11 @@ public class GameEngine extends JFrame {
 		add(controlUI, BorderLayout.PAGE_START);
 		add(board, BorderLayout.CENTER);
 		add(triUI, BorderLayout.LINE_END);
+		//add(quizGame, BorderLayout.SOUTH);
 		
 		return;
 	}
 	
-	
-	
-	// TODO
 	public void timer(){
 		timer.start();
 	}
@@ -56,13 +60,54 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void resetGame() {
-		Board.ball.reset();
+		timer.stop();
+		board.reset();
 	}
+	
+	public void CheckGameOver() {
+		
+		
+		if (board.GameOver()){
+			timer.stop();
+			
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			
+			// pop up a dialogue that confirms computer win
+			JOptionPane.showMessageDialog(frame, "Congrats! You won!",
+					"Level Over", gameWon.INFORMATION_MESSAGE);	
+		}
+		
+		if (levelCount == 0 && board.GameOver() == true){
+			levelCount++;
+			board.reset();
+			board.setConfigFiles("src/Data/b.csv");
+			board.load();
+		}
+		if (levelCount == 1 && board.GameOver() == true) {
+			levelCount++;
+			board.reset();
+			board.setConfigFiles("src/Data/c.csv");
+			board.load();
+		}
+		
+		if (levelCount == 2 && board.GameOver() == true) {
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			JOptionPane.showMessageDialog(frame, "Congrats! You won the whole Game!!!",
+					"Game Over", gameWon.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		
+	}
+	
 	
 	
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			board.update();
+			CheckGameOver();
 		}
 	}
 	

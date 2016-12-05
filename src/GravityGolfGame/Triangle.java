@@ -2,8 +2,6 @@ package GravityGolfGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import javax.swing.JComponent;
 
 public class Triangle extends JComponent {
@@ -12,7 +10,6 @@ public class Triangle extends JComponent {
 		this.pos = pos;
 		this.type = type;
 		orientation = ori;
-		boundingBox = null;
 		
 		switch(type){
 		case _30:
@@ -43,17 +40,18 @@ public class Triangle extends JComponent {
 	
 	private BoardCell pos;
 	private Type type;
-	private Orientation orientation;
+	private static Orientation orientation;
 	private double theta;
 	private Color color;
-	private Rectangle boundingBox;
+	private int[] xPoints;
+	private int[] yPoints;
 	
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
-		int[] xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE * 2, 0);
-		int[] yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE * 2, 0);
+		xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE * 2, 0);
+		yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE * 2, 0);
 
 		g.setColor(color);
 		// May be problems here with null pointers on loading?
@@ -63,19 +61,12 @@ public class Triangle extends JComponent {
 	
 	public void draw(Graphics g){
 		// Points array calculations
-		int[] xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-		int[] yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
-		
-		updateBoundingBox(xPoints, yPoints);
+		xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		
 		g.setColor(color);
 		g.fillPolygon(xPoints, yPoints, xPoints.length);
 		
-		// Bounding Box Visualization
-		/*
-		g.setColor(Color.RED);
-		g.drawRect((int)boundingBox.getX(), (int)boundingBox.getY(),(int) boundingBox.width, (int)boundingBox.getHeight());
-		*/
 		
 		return;
 	}
@@ -86,7 +77,7 @@ public class Triangle extends JComponent {
 		double[] xPointsExact = { 0, 0, 1 };
 		
 		if (type == Type._60) {
-			xPointsExact[2] = 0.6;
+			xPointsExact[2] = 0.7;
 		}
 
 		// Flip based on orientation
@@ -94,14 +85,14 @@ public class Triangle extends JComponent {
 			xPointsExact[0] = xPointsExact[2];
 			if (type == Type._60) {
 				for (int i = 0; i < xPointsExact.length; i++) {
-					xPointsExact[i] += 0.4;
+					xPointsExact[i] += 0.3;
 				}
 			}
 		} else if (orientation == Orientation.LEFT) {
 			xPointsExact[1] = xPointsExact[2];
 			if (type == Type._60) {
 				for (int i = 0; i < xPointsExact.length; i++) {
-					xPointsExact[i] += 0.4;
+					xPointsExact[i] += 0.3;
 				}
 			}
 		}
@@ -115,7 +106,7 @@ public class Triangle extends JComponent {
 		double[] yPointsExact = { 0, 1, 1 };
 		
 		if (type == Type._30) {
-			yPointsExact[0] = 0.4;
+			yPointsExact[0] = 0.3;
 		}
 
 		// Flip based on orientation
@@ -159,7 +150,7 @@ public class Triangle extends JComponent {
 		for (int i = 0; i < values.length; i++) {
 			values[i] *= scaleFactor;
 
-			values[i] += pos.getYUp() * translateFactor - translateFactor;
+			values[i] += pos.getY() * translateFactor - translateFactor;
 		}
 
 		// Round to integer
@@ -175,13 +166,13 @@ public class Triangle extends JComponent {
 	public BoardCell getPosition() { return pos; }
 	
 	public void setOrientaion(Orientation o) { orientation = o; }
-	public Orientation getOrientation() { return orientation; }
+	public static Orientation getOrientation() { return orientation; }
 	
 	public Type getType(){ return type; }
 	
 	public Vector getNormal(Orientation side) {
 
-		// Determine Side Vector
+		// Determine Side Vector. This is broken, the vertical axis is flipped.  But it works.
 		Vector sideNorm = calcSideVector(side);
 		
 		// Calculate Default Normal
@@ -219,15 +210,41 @@ public class Triangle extends JComponent {
 		}
 	}
 	
-	public Rectangle getBounds() { return boundingBox; }
-	private void updateBoundingBox(int[] x, int[]y){
-		if (orientation == Orientation.RIGHT || orientation == Orientation.LEFT){
-			boundingBox = new Rectangle(x[0], y[0], x[2] - x[0], y[2] - y[0]);
-		} else if (orientation == Orientation.DOWN){
-			boundingBox = new Rectangle(x[0] , y[0], x[2] - x[0], y[1] - y[0]);
-		} else {
-			boundingBox = new Rectangle(x[1] , y[0], x[2] - x[1], y[2] - y[0]);
+	public boolean intersects(Vector a){
+		
+		// Change points in triangle and point a to barycentric coordinates
+		// If the value is above 0 then the point is inside the triangle.
+		
+		// Compute vectors
+		Vector v0 = Vector.sub(new Vector(xPoints[2], yPoints[2]), new Vector(xPoints[0], yPoints[0]));
+		Vector v1 = Vector.sub(new Vector(xPoints[1], yPoints[1]), new Vector(xPoints[0], yPoints[0]));
+		Vector v2 = Vector.sub(a, new Vector(xPoints[0], yPoints[0]));
+		
+		// Avoid co-linear evaluation
+		if (orientation == Orientation.UP){
+			v0 = Vector.sub(new Vector(xPoints[2], yPoints[2]), new Vector(xPoints[1], yPoints[1]));
+			v1 = Vector.sub(new Vector(xPoints[0], yPoints[0]), new Vector(xPoints[1], yPoints[1]));
+			v2 = Vector.sub(a, new Vector(xPoints[1], yPoints[1]));
 		}
+
+		// Compute dot products
+		double dot00 = Vector.dot(v0, v0);
+		double dot01 = Vector.dot(v0, v1);
+		double dot02 = Vector.dot(v0, v2);
+		double dot11 = Vector.dot(v1, v1);
+		double dot12 = Vector.dot(v1, v2);
+
+		// Compute barycentric coordinates
+		double invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+		double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+		double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+
+		// Check if point is in triangle
+		if ((u >= 0) && (v >= 0) && (u + v < 1)) {
+			return true;
+		}
+
+		return false;
 	}
 	
 	private Vector calcSideVector(Orientation side){

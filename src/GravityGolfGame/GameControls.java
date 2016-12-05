@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class GameControls extends JPanel {
 
-	private JButton nextLevel;
+	static JButton nextLevel;
 	
 	public GameControls() {
 		createButtons();
@@ -33,10 +33,12 @@ public class GameControls extends JPanel {
 		reset.addActionListener(e -> GameEngine.theInstance().resetGame());
 		add(reset);
 		
-		nextLevel = new JButton("Next Level");
-		nextLevel.setEnabled(false);
-		nextLevel.addActionListener(e -> System.out.println("Not implemented"));
-		add(nextLevel);	
+		
+		//NOT NEEDED
+//		nextLevel = new JButton("Next Level");
+//		nextLevel.setVisible(false);
+//		nextLevel.addActionListener(e -> GameEngine.theInstance().nextLevel());
+//		add(nextLevel);	
 		
 		return;
 	}
