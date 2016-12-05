@@ -50,15 +50,17 @@ public class Board extends JPanel {
 			System.out.println(e.getMessage());
 		}
 		
+		
+		
 		// TEST Triangles (Visual testing)
-		triangles.add(new Triangle(getCellAt(13, 10), Type._45, Orientation.RIGHT));
+		triangles.add(new Triangle(getCellAt(13, 11), Type._45, Orientation.RIGHT));
 		
-		triangles.add(new Triangle(getCellAt(13, 1), Type._30, Orientation.LEFT));
-		triangles.add(new Triangle(getCellAt(4, 6), Type._60, Orientation.DOWN));
+		//triangles.add(new Triangle(getCellAt(13, 1), Type._30, Orientation.LEFT));
+		//triangles.add(new Triangle(getCellAt(4, 6), Type._60, Orientation.DOWN));
 		
-		triangles.add(new Triangle(getCellAt(17, 10), Type._45, Orientation.UP));
-		triangles.add(new Triangle(getCellAt(17, 4), Type._45, Orientation.DOWN));
-		triangles.add(new Triangle(getCellAt(22, 4), Type._45, Orientation.RIGHT));
+		//triangles.add(new Triangle(getCellAt(17, 10), Type._45, Orientation.UP));
+		//triangles.add(new Triangle(getCellAt(17, 4), Type._45, Orientation.DOWN));
+		//triangles.add(new Triangle(getCellAt(22, 4), Type._45, Orientation.RIGHT));
 		/*
 		triangles.add(new Triangle(getCellAt(5,5), Type._30, Orientation.RIGHT));
 		triangles.add(new Triangle(getCellAt(7,5), Type._30, Orientation.UP));
@@ -99,9 +101,9 @@ public class Board extends JPanel {
 			}
 		}
 		
+		
+		
 		// Check for wall collision detection
-		
-		
 		ball.setVelocity(newVelocity);
 		ball.move();
 		

@@ -241,10 +241,6 @@ public class Triangle extends JComponent {
 
 		// Check if point is in triangle
 		if ((u >= 0) && (v >= 0) && (u + v < 1)) {
-			/*
-			System.out.println(a);
-			System.out.println("a: " + u + " b: " + v + " g: " + invDenom + "\n\n\n");
-			*/
 			return true;
 		}
 
