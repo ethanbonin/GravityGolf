@@ -7,7 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import GravityGolfGame.Ball;
-import GravityGolfGame.BallBounce;
 import GravityGolfGame.Board;
 import GravityGolfGame.BoardCell;
 import GravityGolfGame.GameEngine;
@@ -30,8 +29,8 @@ public class BallMovementTest {
 		ball.setStartLocation(2, 20);
 		
 		//Testing before the ball moves to make it is in its starting location
-		assertEquals(2, ball.getX());
-		assertEquals(20, ball.getY());
+		assertEquals(2, ball.getY(), 0.01);
+		assertEquals(20, ball.getX(), 0.01);
 		
 		ball.move();
 		//only test y movement because initial trajectory is always straight down

@@ -6,10 +6,7 @@ import java.awt.Graphics;
 public class BoardCell {
 	
 	char boardCellInitial;
-	private boolean triangle;
-	private boolean ball;
 	private boolean win;
-	private boolean isStart;
 	private boolean isEnd;
 	private int x;
 	private int y;
@@ -23,13 +20,15 @@ public class BoardCell {
 	public BoardCell(int x, int y, boolean isStart, boolean isEnd){
 		this.x = x;
 		this.y = y;
-		this.isStart = isStart;
 		this.isEnd = isEnd;
 	}
 	
 	public BoardCell(int x, int y, boolean isStart, boolean isEnd, char initial){
 		this(x, y, isStart, isEnd);
 		boardCellInitial = initial;
+		if (initial == 'e'){
+			win = true;
+		}
 	}
 	
 	
@@ -62,11 +61,6 @@ public class BoardCell {
 	//This returns the BoardCell to have the winning Condition. 
 	public boolean containsWin() {
 		return this.win;
-	}
-	
-	//This sets the BoardCell to have the winning Condition. 
-	public void setWin(boolean set) {
-		this.win = set;
 	}
 	
 	public int getX(){

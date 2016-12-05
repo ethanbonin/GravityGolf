@@ -3,11 +3,10 @@ package GravityGolfGame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 import javax.swing.JPanel;
 
 import GravityGolfGame.Triangle.Type;
@@ -95,50 +94,57 @@ public class Board extends JPanel {
 		Vector velocity = ball.getVelocity();
 		Vector newVelocity = velocity;
 		
-		// Get Bounding box
-		// This should be moved to Ball.java
-		Rectangle box = new Rectangle((int)(newPos.getX() + ball.getRadius()) - 1, (int)(newPos.getY() + ball.getRadius()) - 1, 2, 2);
-		
+		// Check for triangle collision detection
 		for (Triangle t : triangles){
 			if (t.intersects(newPos)){
 			//if (box.intersects(t.getBounds())){
-				// Determine which side the ball is hitting
-				velocity.negate();
 				
-				double min = Math.toDegrees(Math.acos(Vector.dot(velocity, Orientation.RIGHT.getVector())));
-				Orientation side = Orientation.RIGHT;
-				
-				for (Orientation o : Orientation.values()){
-					
-					double dot = Math.toDegrees(Math.acos(Vector.dot(velocity, o.getVector())));
-					if (dot < min){
-						side = o;
-						min = dot;
-					}
-				}
-				
-				// Calculate new Velocity Vector
-				Vector norm = t.getNormal(side);
-				velocity.negate();
-				
-				newVelocity = Vector.sub(velocity, Vector.mult(Vector.mult(norm, Vector.dot(velocity, norm)), 2));
-				newVelocity = Vector.mult(newVelocity, velocity.getMag());
-				
-				// Transfer to window coordinates
-				if (side == Orientation.LEFT || side == Orientation.RIGHT){
-					newVelocity.setY(newVelocity.getY() * -1);
-				}
-				else {
-					newVelocity.setX(newVelocity.getX() * -1);
-				}
+				newVelocity = calcReflection(velocity, t);
 			}
 		}
+		
+		// Check for wall collision detection
+		
 		
 		ball.setVelocity(newVelocity);
 		ball.move();
 		
 		repaint();
 		return;
+	}
+	
+	private Vector calcReflection(Vector v, Triangle t){
+		// Determine which side the ball is hitting
+		v.negate();
+		
+		double min = Math.toDegrees(Math.acos(Vector.dot(v, Orientation.RIGHT.getVector())));
+		Orientation side = Orientation.RIGHT;
+		
+		for (Orientation o : Orientation.values()){
+			
+			double dot = Math.toDegrees(Math.acos(Vector.dot(v, o.getVector())));
+			if (dot < min){
+				side = o;
+				min = dot;
+			}
+		}
+		
+		// Calculate new Velocity Vector
+		Vector norm = t.getNormal(side);
+		v.negate();
+		
+		Vector newVelocity = Vector.sub(v, Vector.mult(Vector.mult(norm, Vector.dot(v, norm)), 2));
+		newVelocity = Vector.mult(newVelocity, v.getMag());
+		
+		// Transfer to window coordinates
+		if (side == Orientation.LEFT || side == Orientation.RIGHT){
+			newVelocity.setY(newVelocity.getY() * -1);
+		}
+		else {
+			newVelocity.setX(newVelocity.getX() * -1);
+		}
+		
+		return newVelocity;
 	}
 	
 	@Override
@@ -209,6 +215,7 @@ public class Board extends JPanel {
 		numRows = i;
 	}
 
+	
 	public BoardCell getCellAt(int i, int j) {
 		return grid[i][j];
 	}

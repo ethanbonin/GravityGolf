@@ -38,15 +38,6 @@ public class Ball {
 		x += velocity.getX();
 		y += velocity.getY();
 	}
-	
-	
-	public Vector getTrajectory() {
-		return trajectory;
-	}
-
-	public void setTrajectory(Vector trajectory) {
-		this.trajectory = trajectory;
-	}
 
 	public void setPosition(int xPos, int yPos){
 		// flip rows and cols
@@ -65,13 +56,13 @@ public class Ball {
 		return;
 	}
 
-	public boolean isBallMoving() {
-		return isMoving;
-	}
-
 	public void reset() {
 		this.x = this.originalX;
 		this.y = this.originalY;
+	}
+	
+	public boolean isBallMoving() {
+		return isMoving;
 	}
 
 }
