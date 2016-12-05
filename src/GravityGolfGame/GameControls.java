@@ -33,10 +33,6 @@ public class GameControls extends JPanel {
 		reset.addActionListener(e -> GameEngine.theInstance().resetGame());
 		add(reset);
 		
-		JButton quiz = new JButton("Quiz");
-		quiz.addActionListener(e -> GameEngine.theInstance().quizGame());
-		add(quiz);
-		
 		nextLevel = new JButton("Next Level");
 		nextLevel.setEnabled(false);
 		nextLevel.addActionListener(e -> System.out.println("Not implemented"));
