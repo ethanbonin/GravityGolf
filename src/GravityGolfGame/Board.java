@@ -59,6 +59,7 @@ public class Board extends JPanel {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
+		
 		addMouseListener(click);
 	}
 
@@ -173,6 +174,10 @@ public class Board extends JPanel {
 		for (Triangle t : triangles) {
 			t.draw(g);
 		}
+		
+		for (int i = 0; i < triangles.size(); i++){
+			triangles.get(i).draw(g);
+		}
 
 		// Draw Player Last
 		ball.draw(g);
@@ -222,8 +227,8 @@ public class Board extends JPanel {
 		return grid[i][j];
 	}
 
-	public void addTriangle(Triangle triangle) {
-		triangles.add(triangle);
+	public void addTriangle(BoardCell coord) {
+		triangles.add(new Triangle(coord, Type._45, TrianglePane.getOrientation()));
 		repaint();
 	}
 }
