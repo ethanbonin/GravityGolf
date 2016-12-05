@@ -60,6 +60,12 @@ public class Board extends JPanel {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
+		
+		
+		
+		click = new MouseClicked();
+		addMouseListener(click);
+		
 
 		// TEST Triangles (Visual testing)
 		triangles.add(new Triangle(getCellAt(13, 11), Type._45, Orientation.RIGHT));
