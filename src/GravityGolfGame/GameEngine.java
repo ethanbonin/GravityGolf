@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,14 +21,18 @@ public class GameEngine extends JFrame {
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
-	private Quiz quizGame;
 	Timer timer = new Timer(FPS, new TimerListener());
+	private ArrayList<String> levels = new ArrayList<String>();
+	private int levelCount = 0;
 	
 	public static GameEngine theInstance(){ return engine; }
 	
 	public GameEngine() {
 		board = board.getInstance();
-		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
+//		levels.add("src/Data/a.csv");
+//		levels.add("src/Data/b.csv");
+//		levels.add("src/Data/c.csv");
+//		board.setConfigFiles(levels.get(levelCount));
 		board.setConfigFiles("src/Data/b.csv");
 		board.load();
 		
@@ -74,6 +79,17 @@ public class GameEngine extends JFrame {
 			JOptionPane.showMessageDialog(frame, "Congrats! You won!",
 					"Level Over", gameWon.INFORMATION_MESSAGE);
 		}
+	}
+	
+	public void nextLevel() {
+		
+		if (levelCount > 3) {
+			System.out.println("Congradulations! You won!");
+			System.exit(0);
+		}
+		
+		//levelCount++;
+		//Need to some how reset config file
 	}
 	
 	

@@ -34,8 +34,7 @@ public class GameControls extends JPanel {
 		add(reset);
 		
 		nextLevel = new JButton("Next Level");
-		nextLevel.setEnabled(false);
-		nextLevel.addActionListener(e -> System.out.println("Not implemented"));
+		nextLevel.addActionListener(e -> GameEngine.theInstance().nextLevel());
 		add(nextLevel);	
 		
 		return;

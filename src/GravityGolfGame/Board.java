@@ -84,8 +84,13 @@ public class Board extends JPanel {
 				newVelocity = calcTriangleCollision(velocity, t);
 			}
 		}
-
 		// Check for wall collision detection
+//		for (BoardCell C: BoardCell.wallCells) {
+//			
+//		}
+		
+		
+		
 		ball.setVelocity(newVelocity);
 		ball.move();
 		boolean name = ball.endSquare();

@@ -2,6 +2,7 @@ package GravityGolfGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class BoardCell {
 	
@@ -10,6 +11,7 @@ public class BoardCell {
 	private boolean isWall;
 	private int x;
 	private int y;
+	public static ArrayList<BoardCell> wallCells;
 	
 	// NOTE, either we don't need the initial stored, or we don't need the start/end/ball/tri/etc. stored
 	public BoardCell(int x, int y){
@@ -25,10 +27,10 @@ public class BoardCell {
 		}
 		if (initial == 'w') {
 			isWall = true;
+			//wallCells.add(BoardCell cell = new BoardCell(x, y));
 		}
 	}
-	
-	
+
 	public void draw(Graphics g, int x, int y){
 		
 		g.setColor(Color.GRAY);
