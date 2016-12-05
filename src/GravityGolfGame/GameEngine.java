@@ -3,6 +3,9 @@ package GravityGolfGame;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,13 +21,17 @@ public class GameEngine extends JFrame {
 	private TrianglePane triUI;
 	private GameControls controlUI;
 	Timer timer = new Timer(FPS, new TimerListener());
-	private String[] levels;
+	private ArrayList<String> levels = new ArrayList<String>();
+	private int levelCount = 0;
 	
 	public static GameEngine theInstance(){ return engine; }
 	
 	public GameEngine() {
 		board = board.getInstance();
-		//board.setConfigFiles("src/Data/GravityGolfBoard.csv");
+//		levels.add("src/Data/a.csv");
+//		levels.add("src/Data/b.csv");
+//		levels.add("src/Data/c.csv");
+//		board.setConfigFiles(levels.get(levelCount));
 		board.setConfigFiles("src/Data/b.csv");
 		board.load();
 		
@@ -60,10 +67,28 @@ public class GameEngine extends JFrame {
 		board.reset();
 	}
 	
+	public void CheckGameOver() {
+		if (board.GameOver()){
+			timer.stop();
+		}
+	}
+	
+	public void nextLevel() {
+		
+		if (levelCount > 3) {
+			System.out.println("Congradulations! You won!");
+			System.exit(0);
+		}
+		
+		//levelCount++;
+		//Need to some how reset config file
+	}
+	
 	
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			board.update();
+			CheckGameOver();
 		}
 	}
 	
