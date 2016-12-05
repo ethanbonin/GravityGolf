@@ -82,7 +82,6 @@ public class QuizPanel extends JPanel {
 	
 	private void checkSolution() {
 		JFrame frame = new JFrame();
-		//JOptionPane quiz = new JOptionPane();
 		
 		if (quizFinished()) {
 			JOptionPane.showMessageDialog(frame,

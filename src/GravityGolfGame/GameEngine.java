@@ -94,8 +94,13 @@ public class GameEngine extends JFrame {
 		if (levelCount == 2 && board.GameOver() == true) {
 			JFrame frame = new JFrame();
 			JOptionPane gameWon = new JOptionPane();
-			JOptionPane.showMessageDialog(frame, "Congrats! You won the whole Game!!!",
+			JOptionPane.showMessageDialog(frame, "Congrats! You won the whole Game!!!\n time to take a quiz",
 					"Game Over", gameWon.INFORMATION_MESSAGE);
+			QuizPanel quiz = new QuizPanel();
+			this.add(quiz);
+			while(!quiz.quizFinished()) {
+				//Do nothing
+			}
 			System.exit(0);
 		}
 		
