@@ -35,7 +35,6 @@ public class BoardCell {
 		g.fillRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		
 		// Draws outlines as opposed to solid cell
-		
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
 		
@@ -57,6 +56,16 @@ public class BoardCell {
 	
 	public int getY(){
 		return y;
+	}
+	
+	public boolean endSquare(Ball ball){
+		
+		if (ball.getX() == this.x && ball.getY() == this.y && isEnd == true){
+			System.out.println("SUP!");
+		}
+		
+		
+		return isEnd;
 	}
 	
 	

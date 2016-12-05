@@ -99,12 +99,16 @@ public class Board extends JPanel {
 				newVelocity = calcTriangleCollision(velocity, t);
 			}
 		}
+				
 		
 		
 		
 		// Check for wall collision detection
 		ball.setVelocity(newVelocity);
 		ball.move();
+		boolean name = ball.endSquare();
+		
+		
 		
 		repaint();
 		return;
@@ -212,6 +216,9 @@ public class Board extends JPanel {
 					ball.setPosition(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
 					ball.setStartLocation(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
 				} 
+				if (cells[j].charAt(0) == 'e'){ 
+					ball.setEndLocation(i * GameEngine.CELL_SIZE, j * GameEngine.CELL_SIZE);
+				}
 				
 			}
 			i++;

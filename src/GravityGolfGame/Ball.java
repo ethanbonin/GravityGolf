@@ -9,8 +9,10 @@ public class Ball {
 	public static double ACCELERATION_CONSTANT = 1.0;
 	protected double x;
 	protected double y;
-	protected int originalX;
-	protected int originalY;
+	protected double endX;
+	protected double endY;
+	protected double originalX;
+	protected double originalY;
 	protected Vector velocity;
 	protected Vector trajectory;
 	private double radius;
@@ -25,11 +27,16 @@ public class Ball {
 		this.trajectory = new Vector(0,1);
 	}
 	
-	public void setStartLocation(int startLocationX, int startLocationY) {
+	public void setStartLocation(double startLocationX, double startLocationY) {
 		this.y = startLocationX;
 		this.x = startLocationY;
 		this.originalY = startLocationX;
 		this.originalX = startLocationY;
+	}
+	
+	public void setEndLocation(int endLocationX, int endLocationY){
+		this.endX = endLocationX;
+		this.endY = endLocationY;
 	}
 	
 	//We need to initialize velocity when the start button is pressed(1,0) or something
@@ -64,5 +71,16 @@ public class Ball {
 	public boolean isBallMoving() {
 		return isMoving;
 	}
-
+	
+	public boolean endSquare() {
+		
+		if (this.x == this.endX && this.y == this.endY){
+			System.out.print("SUPER!");
+			return true;
+		}
+		
+		
+		return false;
+	}
+	
 }
