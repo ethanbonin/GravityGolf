@@ -27,13 +27,8 @@ public class BoardCell {
 		}
 		if (initial == 'w') {
 			isWall = true;
-			wallCells.add(BoardCell(x, y));
+			//wallCells.add(BoardCell cell = new BoardCell(x, y));
 		}
-	}
-	
-	private BoardCell BoardCell(int x, int y) {
-		BoardCell cell = BoardCell(x, y);
-		return cell;
 	}
 
 	public void draw(Graphics g, int x, int y){
