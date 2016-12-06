@@ -10,7 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GravityGolfGame.Triangle.Type;
@@ -28,6 +30,7 @@ public class Board extends JPanel {
 	String csvFile;
 	private MouseClicked click = new MouseClicked();
 	private int chosen = 0;
+	Type type = (Type._30);
 	JLabel label = new JLabel();
 
 	int numCols;
@@ -274,10 +277,12 @@ public class Board extends JPanel {
 	}
 
 	public void addTriangle(BoardCell coord) {
-		triangles.add(new Triangle(coord, Triangle.getType(), TrianglePane.getOrientation()));
+		triangles.add(new Triangle(coord, TrianglePane.getType(), TrianglePane.getOrientation()));
 		repaint();
 		drawTrajectory();
 	}
+	
+	
 	
 	public void updateCounter() {
 		chosen++;
@@ -290,19 +295,24 @@ public class Board extends JPanel {
 	
 	public void chooseTriangle(){
 		if (chosen == 0){
-			System.out.println("30 chosen");
-			label.setText(": " + Triangle.getType().toString());
-			Triangle.setType(Type._30);
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			JOptionPane.showMessageDialog(frame, "You have chosen 30 Degrees", "Game Start", gameWon.INFORMATION_MESSAGE);
+			type = (Type._30);
 		}
 		if (chosen == 1){
-			System.out.println("45 chosen");
-			label.setText(": " + Triangle.getType().toString());
-			Triangle.setType(Type._45);
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			JOptionPane.showMessageDialog(frame, "You have chosen 45 Degrees", "Game Start", gameWon.INFORMATION_MESSAGE);
+			//label.setText(": " + Triangle.getType().toString());
+			type = (Type._45);
 		}
 		if (chosen == 2){
-			System.out.println("60 chosen");
-			label.setText(": " + Triangle.getType().toString());
-			Triangle.setType(Type._60);
+			JFrame frame = new JFrame();
+			JOptionPane gameWon = new JOptionPane();
+			JOptionPane.showMessageDialog(frame, "You have chosen 60 Degrees", "Game Start", gameWon.INFORMATION_MESSAGE);
+			//label.setText(": " + Triangle.getType().toString());
+			type = (Type._60);
 		}
 		
 	}
