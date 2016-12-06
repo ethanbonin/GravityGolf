@@ -87,6 +87,12 @@ public class Ball {
 		g.fillOval((int) x, (int) y, (int) radius * 2, (int) radius * 2);
 		return;
 	}
+	
+	public void drawSmall(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillOval((int)(x + radius / 2.0), (int)(y + radius / 2.0), (int)radius, (int)radius);
+		return;
+	}
 
 	public void reset() {
 		this.x = this.originalX;

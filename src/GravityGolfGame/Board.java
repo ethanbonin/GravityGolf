@@ -23,6 +23,7 @@ public class Board extends JPanel {
 	boolean endGame = false;
 	private ArrayList<Triangle> triangles;
 	private Ball ball;
+	ArrayList<Ball> trajectory = new ArrayList();
 	String csvFile;
 	private MouseClicked click = new MouseClicked();;
 
@@ -61,6 +62,7 @@ public class Board extends JPanel {
 		}
 
 		addMouseListener(click);
+		drawTrajectory();
 	}
 
 	public void update() {
@@ -152,6 +154,45 @@ public class Board extends JPanel {
 		return newVelocity;
 	}
 
+	private void drawTrajectory() {
+		
+		trajectory.clear();
+		
+		for (int i = 0; i < 10; i++){
+			trajectory.add(new Ball());
+			trajectory.get(i).setPosition((int)ball.getY(), (int)ball.getX());
+		}
+		
+		final int steps = 500;
+		for (int j = 0; j < steps; j++){
+		for (int i = 0; i < trajectory.size(); i++) {
+			
+			Vector newPos = new Vector(trajectory.get(i).getX() + trajectory.get(i).getVelocity().getX() + trajectory.get(i).getRadius(),
+					trajectory.get(i).getY() + trajectory.get(i).getVelocity().getY() + trajectory.get(i).getRadius());
+			
+			Vector velocity = trajectory.get(i).getVelocity();
+			Vector newVelocity = velocity;
+
+			// Check for triangle collision detection
+			for (Triangle t : triangles) {
+				if (t.intersects(newPos)) {
+					newVelocity = calcTriangleCollision(velocity, t);
+				}
+			}
+			
+			trajectory.get(i).setVelocity(newVelocity);
+			trajectory.get(i).move();
+			
+			if (j == i * (steps/10)){
+				trajectory.get(i).setVelocity(new Vector(0, 0));
+			}
+			
+		}
+		}
+
+		return;
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -176,6 +217,9 @@ public class Board extends JPanel {
 			t.draw(g);
 		}
 
+		for (Ball b : trajectory){
+			b.drawSmall(g);
+		}
 
 		// Draw Player Last
 		ball.draw(g);
@@ -228,5 +272,6 @@ public class Board extends JPanel {
 	public void addTriangle(BoardCell coord) {
 		triangles.add(new Triangle(coord, Type._45, TrianglePane.getOrientation()));
 		repaint();
+		drawTrajectory();
 	}
 }

@@ -212,6 +212,9 @@ public class Triangle extends JComponent {
 	
 	public boolean intersects(Vector a){
 		
+		xPoints = scaleTranslateX(getXVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		yPoints = scaleTranslateY(getYVert(), GameEngine.CELL_SIZE, GameEngine.CELL_SIZE);
+		
 		// Change points in triangle and point a to barycentric coordinates
 		// If the value is above 0 then the point is inside the triangle.
 		

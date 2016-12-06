@@ -53,6 +53,7 @@ public class GameEngine extends JFrame {
 	
 	public void timer(){
 		timer.start();
+		
 	}
 	
 	public void stopTimer(){
