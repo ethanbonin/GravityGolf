@@ -87,6 +87,7 @@ public class GameEngine extends JFrame {
 
 		if (levelCount == 0 && board.GameOver() == true) {
 			levelCount++;
+			Quiz quiz = new Quiz();
 			board.reset();
 			board.setConfigFiles("src/Data/b.csv");
 			board.load();

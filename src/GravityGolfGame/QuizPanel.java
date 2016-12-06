@@ -99,7 +99,6 @@ public class QuizPanel extends JPanel {
 		String one = (String) questionOne.getSelectedItem();
 		String two = (String) questionTwo.getSelectedItem();
 		String three = (String) questionThree.getSelectedItem();
-		System.out.println(one + " " + two + " " + three);
 		if (one.equals("30") && two.equals("60") && three.equals("45")) {
 			return true;
 		}

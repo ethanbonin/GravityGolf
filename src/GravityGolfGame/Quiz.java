@@ -20,8 +20,12 @@ public class Quiz extends JPanel{
 	private class ButtonListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
-			
-			
+			// Set up quiz
+			JFrame frame = new JFrame();
+			frame.setSize(600,300);
+			QuizPanel quiz = new QuizPanel();
+			frame.add(quiz);
+			frame.setVisible(true);
 		}
 	}
 	
