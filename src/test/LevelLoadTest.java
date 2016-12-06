@@ -2,11 +2,14 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.InputStream;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import GravityGolfGame.Ball;
 import GravityGolfGame.Board;
+import GravityGolfGame.GameEngine;
 
 public class LevelLoadTest {
 	
@@ -15,7 +18,8 @@ public class LevelLoadTest {
 	@BeforeClass
 	public static void setup(){
 		board = Board.getInstance();
-		board.setConfigFiles("src/Data/GravityGolfBoard.csv");
+		InputStream rdr = GameEngine.theInstance().getClass().getResourceAsStream("/Data/GravityGolfBoard.csv");
+		board.setConfigFiles(rdr);
 		board.load();
 	}
 	

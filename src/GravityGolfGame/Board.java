@@ -1,14 +1,13 @@
 package GravityGolfGame;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,7 +26,7 @@ public class Board extends JPanel {
 	private ArrayList<Triangle> triangles;
 	private Ball ball;
 	ArrayList<Ball> trajectory = new ArrayList();
-	String csvFile;
+	InputStream csvFile;
 	private MouseClicked click = new MouseClicked();
 	private int chosen = 0;
 	Type type = (Type._30);
@@ -55,8 +54,8 @@ public class Board extends JPanel {
 		return endGame;
 	}
 
-	public void setConfigFiles(String file) {
-		csvFile = file;
+	public void setConfigFiles(InputStream i) {
+		csvFile = i;
 	}
 
 	public void load() {
@@ -243,13 +242,13 @@ public class Board extends JPanel {
 
 	private void loadBoardConfig() throws IOException {
 
-		FileReader file = new FileReader(csvFile);
-		BufferedReader in = new BufferedReader(file);
+		Scanner in = new Scanner(csvFile);
 
 		String line;
 		int i = 0;
-		while ((line = in.readLine()) != null) {
+		while (in.hasNextLine()) {
 
+			line = in.nextLine();
 			String[] cells = line.split(",");
 
 			numCols = cells.length;
@@ -270,6 +269,7 @@ public class Board extends JPanel {
 			i++;
 		}
 		numRows = i;
+
 	}
 
 	public BoardCell getCellAt(int i, int j) {

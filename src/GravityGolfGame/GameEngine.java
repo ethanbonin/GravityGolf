@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,10 +37,10 @@ public class GameEngine extends JFrame {
 
 		JFrame frame = new JFrame();
 		JOptionPane gameWon = new JOptionPane();
-		JOptionPane.showMessageDialog(frame, welcome, "Game Start", gameWon.INFORMATION_MESSAGE);
 
 		board = board.getInstance();
-		board.setConfigFiles("src/Data/a.csv");
+		InputStream rdr = getClass().getResourceAsStream("/Data/a.csv");
+		board.setConfigFiles(rdr);
 		board.load();
 
 		triUI = new TrianglePane();
@@ -95,13 +97,15 @@ public class GameEngine extends JFrame {
 			f.setVisible(true);
 			
 			board.reset();
-			board.setConfigFiles("src/Data/b.csv");
+			InputStream rdr = getClass().getResourceAsStream("/Data/b.csv");
+			board.setConfigFiles(rdr);
 			board.load();
 		}
 		if (levelCount == 1 && board.GameOver() == true) {
 			levelCount++;
 			board.reset();
-			board.setConfigFiles("src/Data/c.csv");
+			InputStream rdr = getClass().getResourceAsStream("/Data/c.csv");
+			board.setConfigFiles(rdr);
 			board.load();
 		}
 
