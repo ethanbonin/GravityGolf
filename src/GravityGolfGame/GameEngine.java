@@ -97,11 +97,6 @@ public class GameEngine extends JFrame {
 			JOptionPane gameWon = new JOptionPane();
 			JOptionPane.showMessageDialog(frame, "Congrats! You won the whole Game!!!\n time to take a quiz",
 					"Game Over", gameWon.INFORMATION_MESSAGE);
-			QuizPanel quiz = new QuizPanel();
-			this.add(quiz);
-			while(!quiz.quizFinished()) {
-				//Do nothing
-			}
 			System.exit(0);
 		}
 		

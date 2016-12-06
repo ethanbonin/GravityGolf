@@ -30,6 +30,7 @@ public class TrianglePane extends JPanel{
 		createTriangleButtons();
 		createFlipButton();
 		
+		
 	}
 	
 	private void createTriangleButtons(){
@@ -81,6 +82,18 @@ public class TrianglePane extends JPanel{
 		
 		repaint();
 		return;
+	}
+	
+	public Type getTriangle() {
+		return thirty.getType();
+	}
+	
+	public Type getFortyFixTriangle() {
+		return fortyFive.getType();
+	}
+	
+	public Type getSixtyTriangle() {
+		return sixty.getType();
 	}
 	
 	public static Orientation getOrientation(){
