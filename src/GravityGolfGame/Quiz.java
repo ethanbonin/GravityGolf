@@ -26,9 +26,6 @@ public class Quiz extends JPanel{
 			QuizPanel quiz = new QuizPanel();
 			frame.add(quiz);
 			frame.setVisible(true);
-			if (quiz.quizFinished())
-				frame.setVisible(false);
-			
 		}
 	}
 	
