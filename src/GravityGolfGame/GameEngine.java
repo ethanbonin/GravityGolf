@@ -81,6 +81,18 @@ public class GameEngine extends JFrame {
 		
 		if (levelCount == 0 && board.GameOver() == true){
 			levelCount++;
+			
+			// Set up quiz
+			JFrame frame = new JFrame();
+			frame.setSize(600,300);
+			QuizPanel quiz = new QuizPanel();
+			frame.add(quiz);
+			frame.setVisible(true);
+			while(!quiz.quizFinished()) {
+				//Do nothing
+			}
+			frame.setVisible(false);
+			
 			board.reset();
 			board.setConfigFiles("src/Data/b.csv");
 			board.load();
@@ -97,11 +109,6 @@ public class GameEngine extends JFrame {
 			JOptionPane gameWon = new JOptionPane();
 			JOptionPane.showMessageDialog(frame, "Congrats! You won the whole Game!!!\n time to take a quiz",
 					"Game Over", gameWon.INFORMATION_MESSAGE);
-			QuizPanel quiz = new QuizPanel();
-			this.add(quiz);
-			while(!quiz.quizFinished()) {
-				//Do nothing
-			}
 			System.exit(0);
 		}
 		
