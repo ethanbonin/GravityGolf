@@ -5,43 +5,40 @@ import java.awt.LayoutManager;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GameControls extends JPanel {
+import org.omg.Messaging.SyncScopeHelper;
 
-	static JButton nextLevel;
+import GravityGolfGame.Triangle.Type;
+
+public class GameControls extends JPanel {
 	
+
 	public GameControls() {
 		createButtons();
 	}
 
-	public void openNextLevel(){
-		nextLevel.setEnabled(true);
-	}
-	
-	private void createButtons(){
-		
+	private void createButtons() {
+
 		JButton start = new JButton("Start");
 		start.addActionListener(e -> GameEngine.theInstance().timer());
 		add(start);
-		
+
 		JButton stop = new JButton("Stop");
 		stop.addActionListener(e -> GameEngine.theInstance().stopTimer());
 		add(stop);
-		
+
 		JButton reset = new JButton("Reset");
 		reset.addActionListener(e -> GameEngine.theInstance().resetGame());
 		add(reset);
-		
-		
-		//NOT NEEDED
-//		nextLevel = new JButton("Next Level");
-//		nextLevel.setVisible(false);
-//		nextLevel.addActionListener(e -> GameEngine.theInstance().nextLevel());
-//		add(nextLevel);	
-		
+
+		JButton nextTriangle;
+		nextTriangle = new JButton("Choose Triangle");
+		nextTriangle.addActionListener(e -> Board.getInstance().updateCounter());
+		add(nextTriangle);
+
 		return;
 	}
-	
 
 }

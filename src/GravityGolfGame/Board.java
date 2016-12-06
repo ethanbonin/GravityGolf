@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import GravityGolfGame.Triangle.Type;
@@ -25,7 +26,9 @@ public class Board extends JPanel {
 	private Ball ball;
 	ArrayList<Ball> trajectory = new ArrayList();
 	String csvFile;
-	private MouseClicked click = new MouseClicked();;
+	private MouseClicked click = new MouseClicked();
+	private int chosen = 0;
+	JLabel label = new JLabel();
 
 	int numCols;
 	int numRows;
@@ -104,7 +107,8 @@ public class Board extends JPanel {
 		if (name == true) {
 			isGameOver(name);
 		}
-
+		
+		
 		repaint();
 		return;
 	}
@@ -270,8 +274,37 @@ public class Board extends JPanel {
 	}
 
 	public void addTriangle(BoardCell coord) {
-		triangles.add(new Triangle(coord, Type._45, TrianglePane.getOrientation()));
+		triangles.add(new Triangle(coord, Triangle.getType(), TrianglePane.getOrientation()));
 		repaint();
 		drawTrajectory();
 	}
+	
+	public void updateCounter() {
+		chosen++;
+		if (chosen == 3){
+			chosen = 0;
+		}
+		chooseTriangle();
+	}
+	
+	
+	public void chooseTriangle(){
+		if (chosen == 0){
+			System.out.println("30 chosen");
+			label.setText(": " + Triangle.getType().toString());
+			Triangle.setType(Type._30);
+		}
+		if (chosen == 1){
+			System.out.println("45 chosen");
+			label.setText(": " + Triangle.getType().toString());
+			Triangle.setType(Type._45);
+		}
+		if (chosen == 2){
+			System.out.println("60 chosen");
+			label.setText(": " + Triangle.getType().toString());
+			Triangle.setType(Type._60);
+		}
+		
+	}
+	
 }
