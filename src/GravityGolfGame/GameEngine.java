@@ -21,6 +21,7 @@ public class GameEngine extends JFrame {
 	private Board board;
 	private TrianglePane triUI;
 	private GameControls controlUI;
+	private QuizPanel quizPanel;
 	Timer timer = new Timer(FPS, new TimerListener());
 	private ArrayList<String> levels = new ArrayList<String>();
 	private int levelCount = 0;
@@ -46,7 +47,7 @@ public class GameEngine extends JFrame {
 		add(controlUI, BorderLayout.PAGE_START);
 		add(board, BorderLayout.CENTER);
 		add(triUI, BorderLayout.LINE_END);
-		//add(quizGame, BorderLayout.SOUTH);
+		//add(quizPanel, BorderLayout.SOUTH);
 		
 		return;
 	}
@@ -81,7 +82,9 @@ public class GameEngine extends JFrame {
 		
 		if (levelCount == 0 && board.GameOver() == true){
 			levelCount++;
-			Quiz quiz = new Quiz();
+			setSize(CELL_SIZE* 35, CELL_SIZE * 43);
+			quizPanel = new QuizPanel();
+			add(quizPanel, BorderLayout.SOUTH);
 			board.reset();
 			board.setConfigFiles("src/Data/b.csv");
 			board.load();

@@ -33,7 +33,7 @@ public class Quiz extends JPanel{
 		return null;
 	}
 	
-	//Testing
+/*	//Testing
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setSize(150, 100);
@@ -41,6 +41,6 @@ public class Quiz extends JPanel{
 		frame.setVisible(true);
 
 	}
-	
+	*/
 }
 
