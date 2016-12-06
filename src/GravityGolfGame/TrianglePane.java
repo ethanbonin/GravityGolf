@@ -35,13 +35,13 @@ public class TrianglePane extends JPanel{
 	
 	private void createTriangleButtons(){
 		
-		add(new JLabel(thirty.getType().toString() + " Degrees"));
+		add(new JLabel("30 Degrees"));
 		add(thirty);
 		
-		add(new JLabel(fortyFive.getType().toString() + " Degrees"));
+		add(new JLabel("45 Degrees"));
 		add(fortyFive);
 		
-		add(new JLabel(sixty.getType().toString() + " Degrees"));
+		add(new JLabel("60 Degrees"));
 		add(sixty);
 		
 		return;

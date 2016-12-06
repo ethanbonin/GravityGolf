@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 
 public class Triangle extends JComponent {
+	private static Type _ = Type._30;
+	
 	
 	public Triangle(BoardCell pos, Type type, Orientation ori) {
 		this.pos = pos;
@@ -268,8 +270,5 @@ public class Triangle extends JComponent {
 		return null;
 	}
 	
-	public static void setType(Type type) {
-		Triangle.type = type;
-	}
 	
 }
