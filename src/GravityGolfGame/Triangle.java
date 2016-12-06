@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 
 public class Triangle extends JComponent {
-	private static Type _ = Type._30;
-	
 	
 	public Triangle(BoardCell pos, Type type, Orientation ori) {
 		this.pos = pos;
@@ -41,8 +39,8 @@ public class Triangle extends JComponent {
 	}
 	
 	private BoardCell pos;
-	private static Type type;
-	private static Orientation orientation;
+	private Type type;
+	private Orientation orientation;
 	private double theta;
 	private Color color;
 	private int[] xPoints;
@@ -168,9 +166,9 @@ public class Triangle extends JComponent {
 	public BoardCell getPosition() { return pos; }
 	
 	public void setOrientaion(Orientation o) { orientation = o; }
-	public static Orientation getOrientation() { return orientation; }
+	public Orientation getOrientation() { return orientation; }
 	
-	public static Type getType(){ return type; }
+	public Type getType(){ return type; }
 	
 	public Vector getNormal(Orientation side) {
 

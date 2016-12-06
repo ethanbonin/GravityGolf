@@ -277,7 +277,7 @@ public class Board extends JPanel {
 	}
 
 	public void addTriangle(BoardCell coord) {
-		triangles.add(new Triangle(coord, type, TrianglePane.getOrientation()));
+		triangles.add(new Triangle(coord, TrianglePane.getType(), TrianglePane.getOrientation()));
 		repaint();
 		drawTrajectory();
 	}
@@ -304,14 +304,14 @@ public class Board extends JPanel {
 			JFrame frame = new JFrame();
 			JOptionPane gameWon = new JOptionPane();
 			JOptionPane.showMessageDialog(frame, "You have chosen 45 Degrees", "Game Start", gameWon.INFORMATION_MESSAGE);
-			label.setText(": " + Triangle.getType().toString());
+			//label.setText(": " + Triangle.getType().toString());
 			type = (Type._45);
 		}
 		if (chosen == 2){
 			JFrame frame = new JFrame();
 			JOptionPane gameWon = new JOptionPane();
 			JOptionPane.showMessageDialog(frame, "You have chosen 60 Degrees", "Game Start", gameWon.INFORMATION_MESSAGE);
-			label.setText(": " + Triangle.getType().toString());
+			//label.setText(": " + Triangle.getType().toString());
 			type = (Type._60);
 		}
 		

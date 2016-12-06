@@ -33,11 +33,12 @@ public class GameControls extends JPanel {
 		reset.addActionListener(e -> GameEngine.theInstance().resetGame());
 		add(reset);
 
+		/*
 		JButton nextTriangle;
 		nextTriangle = new JButton("Choose Triangle");
 		nextTriangle.addActionListener(e -> Board.getInstance().updateCounter());
 		add(nextTriangle);
-
+		*/
 		return;
 	}
 

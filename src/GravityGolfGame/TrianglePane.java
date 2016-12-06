@@ -21,6 +21,7 @@ public class TrianglePane extends JPanel{
 	private Triangle thirty = new Triangle(new BoardCell(0, 0), Type._30, orient);
 	private Triangle fortyFive = new Triangle(new BoardCell(0, 0), Type._45, orient);
 	private Triangle sixty = new Triangle(new BoardCell(0, 0), Type._60, orient);
+	private static Triangle.Type currentType = Type._45;
 	
 	public TrianglePane() {
 		
@@ -36,12 +37,15 @@ public class TrianglePane extends JPanel{
 	private void createTriangleButtons(){
 		
 		add(new JLabel("30 Degrees"));
+		createSelect(thirty);
 		add(thirty);
 		
 		add(new JLabel("45 Degrees"));
+		createSelect(fortyFive);
 		add(fortyFive);
 		
 		add(new JLabel("60 Degrees"));
+		createSelect(sixty);
 		add(sixty);
 		
 		return;
@@ -54,6 +58,12 @@ public class TrianglePane extends JPanel{
 		add(flip);
 		
 		return;
+	}
+	
+	private void createSelect(Triangle t){
+		JButton select = new JButton("Select");
+		select.addActionListener(e -> updateType(t));
+		add(select);
 	}
 	
 	private void update(){
@@ -84,6 +94,10 @@ public class TrianglePane extends JPanel{
 		return;
 	}
 	
+	private void updateType(Triangle t){
+		currentType = t.getType();
+	}
+	
 	public Type getTriangle() {
 		return thirty.getType();
 	}
@@ -98,6 +112,9 @@ public class TrianglePane extends JPanel{
 	
 	public static Orientation getOrientation(){
 		return orient;
+	}
+	public static Type getType(){
+		return currentType;
 	}
 	
 	// TESTING ONLY
